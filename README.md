@@ -8,7 +8,7 @@ Instalation
 -----------
 
 ```
-composer require tomaj:nette-auto-variable-template
+composer require "tomaj/nette-auto-variable-template"
 ```
 
 Usage
