@@ -1,7 +1,7 @@
 {
     "name": "tomaj/nette-auto-variable-template",
     "description": "Auto variable template factory",
-    "license": "LGPL",
+    "license": "LGPL-2.0-or-later",
     "keywords": ["variable", "global", "latte", "nette"],
     "authors": [
         {
