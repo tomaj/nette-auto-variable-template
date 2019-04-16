@@ -18,20 +18,20 @@ class AutoVariableTemplateFactory implements ITemplateFactory
         $this->innerTemplateFactory = $innerTemplateFactory;
     }
 
-    public function createTemplate(Control $control = null)
+    public function createTemplate(Control $control = null): ITemplate
     {
         $template = $this->innerTemplateFactory->createTemplate($control);
         $this->assignVariables($template);
         return $template;
     }
 
-    public function registerVariable($key, $variable)
+    public function registerVariable(string $key, $variable): self
     {
         $this->variables[$key] = $variable;
         return $this;
     }
 
-    private function assignVariables(ITemplate $template)
+    private function assignVariables(ITemplate $template): void
     {
         foreach ($this->variables as $key => $value) {
             $template->$key = $value;
