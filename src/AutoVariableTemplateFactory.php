@@ -5,10 +5,15 @@ namespace Tomaj\Latte;
 use Nette\Application\UI\Control;
 use Nette\Application\UI\ITemplate;
 use Nette\Application\UI\ITemplateFactory;
+use Nette\SmartObject;
 
 class AutoVariableTemplateFactory implements ITemplateFactory
 {
+    use SmartObject;
+
     private $variables = [];
+
+    public $onCreate = [];
 
     /** @var ITemplateFactory  */
     private $innerTemplateFactory;
@@ -22,6 +27,7 @@ class AutoVariableTemplateFactory implements ITemplateFactory
     {
         $template = $this->innerTemplateFactory->createTemplate($control);
         $this->assignVariables($template);
+        $this->onCreate($template);
         return $template;
     }
 
