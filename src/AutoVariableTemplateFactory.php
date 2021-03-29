@@ -23,9 +23,9 @@ class AutoVariableTemplateFactory implements ITemplateFactory
         $this->innerTemplateFactory = $innerTemplateFactory;
     }
 
-    public function createTemplate(Control $control = null): ITemplate
+    public function createTemplate(Control $control = null, string $class = null): ITemplate
     {
-        $template = $this->innerTemplateFactory->createTemplate($control);
+        $template = $this->innerTemplateFactory->createTemplate($control, $class);
         $this->assignVariables($template);
         $this->onCreate($template);
         return $template;
