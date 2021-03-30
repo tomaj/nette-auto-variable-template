@@ -17,15 +17,12 @@ Usage
 In config.neon you need setup factory:
 
 ```
-latte.templateFactory: {autowired: off}
+latte.templateFactory: {autowired: no}
 templateFactory:
-	class: Tomaj\Latte\AutoVariableTemplateFactory(@latte.templateFactory)
+	factory: Tomaj\Latte\AutoVariableTemplateFactory(@latte.templateFactory)
 	setup:
 		- registerVariable('variableName', @someValue)
 		- registerVariable('otherVariable', 'something else')
 ```
 
 in each template will be variables *{$variableName}* and *{$otherVariable}*
-
-
-
