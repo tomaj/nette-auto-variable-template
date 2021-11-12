@@ -43,4 +43,9 @@ class AutoVariableTemplateFactory implements ITemplateFactory
             $template->$key = $value;
         }
     }
+
+    public function getVariables(): array
+    {
+        return $this->variables;
+    }
 }
