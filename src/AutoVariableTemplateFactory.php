@@ -3,27 +3,27 @@
 namespace Tomaj\Latte;
 
 use Nette\Application\UI\Control;
-use Nette\Application\UI\ITemplate;
-use Nette\Application\UI\ITemplateFactory;
+use Nette\Application\UI\Template;
+use Nette\Application\UI\TemplateFactory;
 use Nette\SmartObject;
 
-class AutoVariableTemplateFactory implements ITemplateFactory
+class AutoVariableTemplateFactory implements TemplateFactory
 {
     use SmartObject;
 
-    private $variables = [];
+    /** @var array<string, mixed> */
+    private array $variables = [];
 
     public $onCreate = [];
 
-    /** @var ITemplateFactory  */
-    private $innerTemplateFactory;
+    private TemplateFactory $innerTemplateFactory;
 
-    public function __construct(ITemplateFactory $innerTemplateFactory)
+    public function __construct(TemplateFactory $innerTemplateFactory)
     {
         $this->innerTemplateFactory = $innerTemplateFactory;
     }
 
-    public function createTemplate(Control $control = null, string $class = null): ITemplate
+    public function createTemplate(?Control $control = null, ?string $class = null): Template
     {
         $template = $this->innerTemplateFactory->createTemplate($control, $class);
         $this->assignVariables($template);
@@ -37,7 +37,7 @@ class AutoVariableTemplateFactory implements ITemplateFactory
         return $this;
     }
 
-    private function assignVariables(ITemplate $template): void
+    private function assignVariables(Template $template): void
     {
         foreach ($this->variables as $key => $value) {
             $template->$key = $value;
