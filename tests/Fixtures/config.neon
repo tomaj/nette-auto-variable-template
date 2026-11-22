@@ -1,0 +1,14 @@
+# The configuration from the README and the docs, with test services.
+services:
+	latte.templateFactory:
+		autowired: no
+
+	templateFactory:
+		factory: Tomaj\Latte\AutoVariableTemplateFactory(@latte.templateFactory)
+		setup:
+			- registerVariable('appName', 'My Application')
+			- registerVariable('settings', @Tomaj\Latte\Test\Fixtures\Settings)
+			- '$onCreate[]' = [@Tomaj\Latte\Test\Fixtures\TemplateListener, 'templateCreated']
+
+	- Tomaj\Latte\Test\Fixtures\Settings
+	- Tomaj\Latte\Test\Fixtures\TemplateListener
