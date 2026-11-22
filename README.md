@@ -1,6 +1,7 @@
 Nette Auto Variable Template Factory
 =====================================
 
+[![CI](https://github.com/tomaj/nette-auto-variable-template/actions/workflows/ci.yml/badge.svg)](https://github.com/tomaj/nette-auto-variable-template/actions/workflows/ci.yml)
 [![Latest Stable Version](https://img.shields.io/packagist/v/tomaj/nette-auto-variable-template.svg)](https://packagist.org/packages/tomaj/nette-auto-variable-template)
 [![License](https://img.shields.io/badge/license-LGPL--2.0--or--later-blue.svg)](LICENSE)
 
@@ -8,7 +9,7 @@ A lightweight Nette Framework library that automatically injects variables into 
 
 ## Requirements
 
-- PHP >= 8.1
+- PHP >= 8.3
 - Nette Application ^3.2
 - Nette Utils ^4.0
 
