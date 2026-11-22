@@ -6,6 +6,10 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 
 ### Changed
 - **BREAKING CHANGE**: requires PHP 8.4 or newer (`"php": "^8.4"`, was `>= 8.1.0`). Upgrade PHP before updating the package, or stay on 3.x. ([#7](https://github.com/tomaj/nette-auto-variable-template/issues/7))
+- **BREAKING CHANGE**: `AutoVariableTemplateFactory` is `final`. Instead of extending it, configure it (`registerVariable()`, `onCreate`) or decorate it with your own `Nette\Application\UI\TemplateFactory`; see [UPGRADE-4.0.md](https://github.com/tomaj/nette-auto-variable-template/blob/master/UPGRADE-4.0.md). ([#8](https://github.com/tomaj/nette-auto-variable-template/issues/8))
+- **BREAKING CHANGE**: the class no longer uses `Nette\SmartObject`. `onCreate` is a typed `public array $onCreate` that `createTemplate()` calls in a loop; `$factory->onCreate[] = ...` and the `'$onCreate[]'` setup in `config.neon` work as before, but the magic `$factory->onCreate($template)` call is gone and reading or writing an undeclared property no longer throws `Nette\MemberAccessException`. ([#8](https://github.com/tomaj/nette-auto-variable-template/issues/8))
+- `createTemplate()` has `#[\Override]`, `registerVariable()` takes `mixed $variable`, the inner factory is a promoted `readonly` property and the file declares `strict_types`. No change in behaviour. ([#8](https://github.com/tomaj/nette-auto-variable-template/issues/8))
+- `nette/utils` is no longer a direct dependency (it was needed only for `SmartObject`; nette/application still installs it). ([#8](https://github.com/tomaj/nette-auto-variable-template/issues/8))
 - Autoloading uses PSR-4 (`Tomaj\Latte\` → `src/`) instead of a classmap. The class name is unchanged. ([#13](https://github.com/tomaj/nette-auto-variable-template/issues/13))
 - The Composer dist archive contains only `src/`, `composer.json` and the README, CHANGELOG and UPGRADE files; tool configs and the `.github` folder are no longer installed into `vendor/`. ([#13](https://github.com/tomaj/nette-auto-variable-template/issues/13))
 
