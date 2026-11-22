@@ -5,7 +5,7 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 ## [Unreleased][unreleased]
 
 ### Changed
-- **BREAKING CHANGE**: requires PHP 8.3 or newer (`"php": "^8.3"`, was `>= 8.1.0`). Upgrade PHP before updating the package.
+- **BREAKING CHANGE**: requires PHP 8.4 or newer (`"php": "^8.4"`, was `>= 8.1.0`). Upgrade PHP before updating the package, or stay on 3.x. ([#7](https://github.com/tomaj/nette-auto-variable-template/issues/7))
 - Autoloading uses PSR-4 (`Tomaj\Latte\` → `src/`) instead of a classmap. The class name is unchanged. ([#13](https://github.com/tomaj/nette-auto-variable-template/issues/13))
 - The Composer dist archive contains only `src/`, `composer.json` and the README, CHANGELOG and UPGRADE files; tool configs and the `.github` folder are no longer installed into `vendor/`. ([#13](https://github.com/tomaj/nette-auto-variable-template/issues/13))
 

@@ -25,7 +25,7 @@
         "security": "https://github.com/tomaj/nette-auto-variable-template/security/policy"
     },
     "require": {
-        "php": "^8.3",
+        "php": "^8.4",
         "nette/application": "^3.2",
         "nette/utils": "^4.0"
     },
