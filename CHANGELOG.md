@@ -6,11 +6,17 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 
 ### Changed
 - **BREAKING CHANGE**: requires PHP 8.3 or newer (`"php": "^8.3"`, was `>= 8.1.0`). Upgrade PHP before updating the package.
+- Autoloading uses PSR-4 (`Tomaj\Latte\` → `src/`) instead of a classmap. The class name is unchanged. ([#13](https://github.com/tomaj/nette-auto-variable-template/issues/13))
+- The Composer dist archive contains only `src/`, `composer.json` and the README, CHANGELOG and UPGRADE files; tool configs and the `.github` folder are no longer installed into `vendor/`. ([#13](https://github.com/tomaj/nette-auto-variable-template/issues/13))
 
 ### Added
 - GitHub Actions CI: lint on PHP 8.3–8.6 (plus `--prefer-lowest`, nightly 8.7 allowed to fail), PHP-CS-Fixer (PER-CS), PHPStan level max with strict rules, `composer audit`.
 - Dependabot for Composer and GitHub Actions.
 - `composer check`, `phpcs`, `cs-fix`, `phpstan` and `lint` scripts.
+- `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, `SECURITY.md` (supported versions, private vulnerability reporting, what not to register), `RELEASING.md`, `UPGRADE-4.0.md`, issue and pull request templates. ([#13](https://github.com/tomaj/nette-auto-variable-template/issues/13))
+
+### Fixed
+- README no longer links a `LICENSE` file that does not exist; it states the licence declared in `composer.json`. ([#13](https://github.com/tomaj/nette-auto-variable-template/issues/13), [#15](https://github.com/tomaj/nette-auto-variable-template/issues/15))
 
 ## [3.0.0] - 2025-12-05
 

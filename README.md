@@ -1,21 +1,29 @@
-Nette Auto Variable Template Factory
-=====================================
+# Nette Auto Variable Template
 
-[![CI](https://github.com/tomaj/nette-auto-variable-template/actions/workflows/ci.yml/badge.svg)](https://github.com/tomaj/nette-auto-variable-template/actions/workflows/ci.yml)
+**Variables registered once, available in every Nette template**
+
+**Documentation: https://tomaj.github.io/nette-auto-variable-template/**
+
+[Getting started](https://tomaj.github.io/nette-auto-variable-template/guide/getting-started) · [API reference](https://tomaj.github.io/nette-auto-variable-template/api/reference) · [Changelog](https://tomaj.github.io/nette-auto-variable-template/changelog)
+
 [![Latest Stable Version](https://img.shields.io/packagist/v/tomaj/nette-auto-variable-template.svg)](https://packagist.org/packages/tomaj/nette-auto-variable-template)
-[![License](https://img.shields.io/badge/license-LGPL--2.0--or--later-blue.svg)](LICENSE)
+[![CI](https://github.com/tomaj/nette-auto-variable-template/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/tomaj/nette-auto-variable-template/actions/workflows/ci.yml?query=branch%3Amaster)
+[![Coverage Status](https://coveralls.io/repos/github/tomaj/nette-auto-variable-template/badge.svg?branch=master)](https://coveralls.io/github/tomaj/nette-auto-variable-template?branch=master)
+[![PHPStan](https://img.shields.io/badge/PHPStan-level%20max-brightgreen.svg)](https://phpstan.org/)
+[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/tomaj/nette-auto-variable-template/badge)](https://scorecard.dev/viewer/?uri=github.com/tomaj/nette-auto-variable-template)
+[![Documentation](https://img.shields.io/badge/docs-4.x-4f46e5.svg)](https://tomaj.github.io/nette-auto-variable-template/)
+[![License](https://img.shields.io/packagist/l/tomaj/nette-auto-variable-template.svg)](https://packagist.org/packages/tomaj/nette-auto-variable-template)
+[![PHP Version](https://img.shields.io/packagist/dependency-v/tomaj/nette-auto-variable-template/php.svg)](https://packagist.org/packages/tomaj/nette-auto-variable-template)
 
-A lightweight Nette Framework library that automatically injects variables into all Latte templates, including component templates. This is useful when you need certain variables (such as application settings, user preferences, or global configuration) to be available across all templates without manually passing them from each presenter or component.
+## What is Nette Auto Variable Template?
 
-## Requirements
+A small [Nette](https://nette.org/) library that assigns the variables you register to every Latte template the application creates: presenter templates, component templates and any other template made by the template factory. Use it for values that every template needs, such as the application name, the current user or a settings service, instead of passing them from each presenter and component.
 
-- PHP >= 8.3
-- Nette Application ^3.2
-- Nette Utils ^4.0
+`Tomaj\Latte\AutoVariableTemplateFactory` decorates Nette's template factory: the original factory creates the template, then the registered variables are assigned and the `onCreate` handlers run.
 
 ## Installation
 
-Install the package via Composer:
+This library requires PHP 8.4 or later and nette/application 3.2 or later.
 
 ```bash
 composer require tomaj/nette-auto-variable-template
@@ -23,66 +31,41 @@ composer require tomaj/nette-auto-variable-template
 
 ## Usage
 
-### Basic Configuration
-
-Register the custom template factory in your `config.neon` file. The library wraps the default Latte template factory and automatically assigns your registered variables to every template:
+Register the factory in `config.neon`. It wraps the default Latte template factory, which is no longer autowired:
 
 ```neon
 services:
-    latte.templateFactory:
-        autowired: no
+	latte.templateFactory:
+		autowired: no
 
-    templateFactory:
-        factory: Tomaj\Latte\AutoVariableTemplateFactory(@latte.templateFactory)
-        setup:
-            - registerVariable('appName', 'My Application')
-            - registerVariable('settings', @App\Model\SettingsService)
+	templateFactory:
+		factory: Tomaj\Latte\AutoVariableTemplateFactory(@latte.templateFactory)
+		setup:
+			- registerVariable('appName', 'My Application')
+			- registerVariable('settings', @App\Model\SettingsService)
 ```
 
-### Using Variables in Templates
-
-Once configured, the registered variables are automatically available in all your Latte templates:
+Every template can now use the variables:
 
 ```latte
 <h1>{$appName}</h1>
 <p>Version: {$settings->getVersion()}</p>
 ```
 
-### Registering Services
+`$factory->onCreate[]` takes callbacks that run for every new template, after the variables are assigned. Read the [documentation](https://tomaj.github.io/nette-auto-variable-template/) for more.
 
-You can register any value as a template variable, including services from the DI container:
+## Upgrading
 
-```neon
-services:
-    templateFactory:
-        factory: Tomaj\Latte\AutoVariableTemplateFactory(@latte.templateFactory)
-        setup:
-            - registerVariable('user', @security.user)
-            - registerVariable('translator', @translator)
-            - registerVariable('config', @App\Model\ConfigService)
-```
+See [UPGRADE-4.0.md](UPGRADE-4.0.md) for upgrading from 3.x and [CHANGELOG.md](CHANGELOG.md) for all changes.
 
-### onCreate Event
+## Contributing
 
-The factory also provides an `onCreate` event that fires whenever a template is created, allowing you to perform additional template customization:
+See [CONTRIBUTING.md](CONTRIBUTING.md). Everyone taking part follows the [Code of Conduct](CODE_OF_CONDUCT.md).
 
-```php
-$templateFactory->onCreate[] = function (Template $template) {
-    // Custom template initialization
-};
-```
+## Security
 
-## How It Works
-
-The `AutoVariableTemplateFactory` implements `Nette\Application\UI\TemplateFactory` and acts as a decorator around the default template factory. When a template is created:
-
-1. The inner (original) template factory creates the template
-2. All registered variables are automatically assigned to the template
-3. The `onCreate` event is triggered
-4. The template is returned ready to use
-
-This approach ensures that variables are available in presenter templates, component templates, and any other templates created through the factory.
+Registered variables reach every template, so never register secrets. Report vulnerabilities in private, as described in [SECURITY.md](SECURITY.md). Do not open a public issue.
 
 ## License
 
-This library is licensed under the LGPL-2.0-or-later license. See the [LICENSE](LICENSE) file for details.
+nette-auto-variable-template is licensed under the GNU Lesser General Public License, version 2.0 or later (`LGPL-2.0-or-later`, as declared in `composer.json`).

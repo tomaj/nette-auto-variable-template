@@ -1,4 +1,10 @@
-vendor
+/vendor/
+/build/
+/.phpunit.cache/
+/.php-cs-fixer.cache
 composer.lock
+docs/node_modules/
+docs/.vitepress/dist/
+docs/.vitepress/cache/
+.idea/
 .DS_Store
-build/

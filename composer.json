@@ -1,8 +1,15 @@
 {
     "name": "tomaj/nette-auto-variable-template",
-    "description": "Auto variable template factory",
+    "description": "Nette template factory that assigns registered variables to every Latte template.",
     "license": "LGPL-2.0-or-later",
-    "keywords": ["variable", "global", "latte", "nette"],
+    "type": "library",
+    "keywords": [
+        "nette",
+        "latte",
+        "template",
+        "variable",
+        "global"
+    ],
     "authors": [
         {
             "name": "Tomas Majer",
@@ -10,6 +17,13 @@
             "homepage": "http://www.tomaj.sk/"
         }
     ],
+    "homepage": "https://tomaj.github.io/nette-auto-variable-template/",
+    "support": {
+        "issues": "https://github.com/tomaj/nette-auto-variable-template/issues",
+        "source": "https://github.com/tomaj/nette-auto-variable-template",
+        "docs": "https://tomaj.github.io/nette-auto-variable-template/",
+        "security": "https://github.com/tomaj/nette-auto-variable-template/security/policy"
+    },
     "require": {
         "php": "^8.3",
         "nette/application": "^3.2",
@@ -22,10 +36,14 @@
         "phpstan/phpstan-deprecation-rules": "^2.0",
         "phpstan/phpstan-strict-rules": "^2.0"
     },
+    "minimum-stability": "stable",
     "autoload": {
-        "classmap": [
-            "src/"
-        ]
+        "psr-4": {
+            "Tomaj\\Latte\\": "src/"
+        }
+    },
+    "config": {
+        "sort-packages": true
     },
     "scripts": {
         "check": [
@@ -37,8 +55,5 @@
         "lint": "find src -name '*.php' -print0 | xargs -0 -n1 php -l",
         "phpcs": "php-cs-fixer fix --dry-run --diff --verbose",
         "phpstan": "phpstan analyse --memory-limit=1G"
-    },
-    "config": {
-        "sort-packages": true
     }
 }

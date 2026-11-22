@@ -1,0 +1,53 @@
+name: Feature request
+description: Suggest an improvement to nette-auto-variable-template
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the suggestion. nette-auto-variable-template assigns registered variables to every Nette template. The next planned major release is 4.0; breaking ideas can be proposed with that in mind.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What is difficult or missing today?
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed solution
+      description: How should the factory behave? Show the configuration or code you would write.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives
+      description: What else did you consider, for example an `onCreate` handler?
+    validations:
+      required: false
+
+  - type: dropdown
+    id: compatibility
+    attributes:
+      label: Compatibility
+      description: Can this land without a breaking change?
+      options:
+        - Yes, existing configurations keep working
+        - No, it needs a major version
+        - Not sure
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: I searched existing issues and this is not a duplicate
+          required: true
