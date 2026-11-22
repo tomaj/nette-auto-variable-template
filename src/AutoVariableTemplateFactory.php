@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tomaj\Latte;
 
 use Nette\Application\UI\Control;
@@ -20,13 +22,9 @@ class AutoVariableTemplateFactory implements TemplateFactory
     /** @var array<callable(Template): void> */
     public $onCreate = [];
 
-    private TemplateFactory $innerTemplateFactory;
+    public function __construct(private TemplateFactory $innerTemplateFactory) {}
 
-    public function __construct(TemplateFactory $innerTemplateFactory)
-    {
-        $this->innerTemplateFactory = $innerTemplateFactory;
-    }
-
+    #[\Override]
     public function createTemplate(?Control $control = null, ?string $class = null): Template
     {
         // the interface declares only $control; the Latte TemplateFactory (and similar decorators) also accept $class

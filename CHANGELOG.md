@@ -12,7 +12,7 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 ### Added
 - GitHub Actions CI: lint on PHP 8.3–8.6 (plus `--prefer-lowest`, nightly 8.7 allowed to fail), PHP-CS-Fixer (PER-CS), PHPStan level max with strict rules, `composer audit`.
 - Dependabot for Composer and GitHub Actions.
-- `composer check`, `phpcs`, `cs-fix`, `phpstan` and `lint` scripts.
+- Rector (PHP 8.4 set, dead code, code quality, type declarations, early return), PHP-CS-Fixer with `declare_strict_types` over `src` and `tests`, PHPStan with phpstan-phpunit, `checkMissingOverrideMethodAttribute` and `checkUninitializedProperties`; composer scripts `phpunit`, `test`, `coverage`, `infection`, `rector`, `rector-fix` and `check` with descriptions. The `lint` script is gone. ([#9](https://github.com/tomaj/nette-auto-variable-template/issues/9))
 - `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, `SECURITY.md` (supported versions, private vulnerability reporting, what not to register), `RELEASING.md`, `UPGRADE-4.0.md`, issue and pull request templates. ([#13](https://github.com/tomaj/nette-auto-variable-template/issues/13))
 
 ### Fixed

@@ -31,10 +31,14 @@
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.95",
+        "infection/infection": "^0.35",
         "nette/phpstan-rules": "^1.0.8",
         "phpstan/phpstan": "^2.3",
         "phpstan/phpstan-deprecation-rules": "^2.0",
-        "phpstan/phpstan-strict-rules": "^2.0"
+        "phpstan/phpstan-phpunit": "^2.0",
+        "phpstan/phpstan-strict-rules": "^2.0",
+        "phpunit/phpunit": "^13.2",
+        "rector/rector": "^2.8"
     },
     "minimum-stability": "stable",
     "autoload": {
@@ -42,18 +46,53 @@
             "Tomaj\\Latte\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Tomaj\\Latte\\Test\\": "tests/"
+        }
+    },
     "config": {
+        "allow-plugins": {
+            "infection/extension-installer": true
+        },
         "sort-packages": true
     },
     "scripts": {
         "check": [
             "@phpcs",
             "@phpstan",
-            "@lint"
+            "@rector",
+            "@test"
+        ],
+        "coverage": [
+            "@putenv XDEBUG_MODE=coverage",
+            "phpunit --coverage-clover build/logs/clover.xml --coverage-html build/coverage"
         ],
         "cs-fix": "php-cs-fixer fix",
-        "lint": "find src -name '*.php' -print0 | xargs -0 -n1 php -l",
+        "infection": [
+            "@putenv XDEBUG_MODE=coverage",
+            "infection --threads=max"
+        ],
         "phpcs": "php-cs-fixer fix --dry-run --diff --verbose",
-        "phpstan": "phpstan analyse --memory-limit=1G"
+        "phpstan": "phpstan analyse --memory-limit=1G",
+        "phpunit": [
+            "@putenv XDEBUG_MODE=off",
+            "phpunit --no-coverage"
+        ],
+        "rector": "rector --dry-run",
+        "rector-fix": "rector",
+        "test": "@phpunit"
+    },
+    "scripts-descriptions": {
+        "check": "Run code style, PHPStan, Rector and the tests",
+        "coverage": "Run the tests with a Clover and HTML coverage report in build/ (needs Xdebug or PCOV)",
+        "cs-fix": "Fix the code style",
+        "infection": "Run mutation testing with Infection (needs Xdebug or PCOV)",
+        "phpcs": "Check the code style (PER-CS) without changing files",
+        "phpstan": "Run PHPStan (level max)",
+        "phpunit": "Run the tests without coverage",
+        "rector": "Show the changes Rector would make, without applying them",
+        "rector-fix": "Apply the Rector changes",
+        "test": "Run the tests"
     }
 }
