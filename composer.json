@@ -33,6 +33,7 @@
         "infection/infection": "^0.35",
         "latte/latte": "^3.0",
         "nette/di": "^3.2",
+        "nette/neon": "^3.3",
         "nette/phpstan-rules": "^1.0.8",
         "phpstan/phpstan": "^2.3",
         "phpstan/phpstan-deprecation-rules": "^2.0",
