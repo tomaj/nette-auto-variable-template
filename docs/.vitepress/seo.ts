@@ -8,6 +8,8 @@ const base = process.env.DOCS_BASE || '/nette-auto-variable-template/'
 export const isPreview = base !== '/nette-auto-variable-template/'
 export const siteUrl = `https://tomaj.github.io${base}`
 export const ogImage = `${siteUrl}og.png`
+// Slovak pages get the social card with the Slovak tagline.
+export const ogImageSk = `${siteUrl}og-sk.png`
 export const siteName = 'Nette Auto Variable Template'
 const repoUrl = 'https://github.com/tomaj/nette-auto-variable-template'
 
@@ -106,6 +108,7 @@ export function seoHead(page: PageData, srcDir: string, siteDescription: string)
   const url = pageUrl(page.relativePath)
   const locale = localeOf(page.relativePath)
   const sk = locale.prefix === 'sk/'
+  const image = sk ? ogImageSk : ogImage
   const isHome = page.frontmatter.layout === 'home'
   const homeTitle = sk ? `${siteName} – premenné v každej Nette šablóne` : `${siteName} – variables in every Nette template`
   const title = isHome ? homeTitle : `${page.title} | ${siteName}`
@@ -122,14 +125,14 @@ export function seoHead(page: PageData, srcDir: string, siteDescription: string)
     ['meta', { property: 'og:title', content: title }],
     ['meta', { property: 'og:description', content: description }],
     ['meta', { property: 'og:url', content: url }],
-    ['meta', { property: 'og:image', content: ogImage }],
+    ['meta', { property: 'og:image', content: image }],
     ['meta', { property: 'og:image:width', content: '1200' }],
     ['meta', { property: 'og:image:height', content: '630' }],
-    ['meta', { property: 'og:image:alt', content: 'Nette Auto Variable Template: one registerVariable() line, the app name in every template' }],
+    ['meta', { property: 'og:image:alt', content: sk ? 'Nette Auto Variable Template: jeden riadok registerVariable(), názov aplikácie v každej šablóne' : 'Nette Auto Variable Template: one registerVariable() line, the app name in every template' }],
     ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
     ['meta', { name: 'twitter:title', content: title }],
     ['meta', { name: 'twitter:description', content: description }],
-    ['meta', { name: 'twitter:image', content: ogImage }],
+    ['meta', { name: 'twitter:image', content: image }],
     ['meta', { name: 'author', content: person.name }],
   ]
   if (isPreview) head.push(['meta', { name: 'robots', content: 'noindex, nofollow' }])
@@ -158,7 +161,7 @@ export function seoHead(page: PageData, srcDir: string, siteDescription: string)
       softwareVersion: '4.x',
       author: { '@id': person['@id'] },
       maintainer: { '@id': person['@id'] },
-      image: [{ '@id': logo['@id'] }, ogImage],
+      image: [{ '@id': logo['@id'] }, image],
       offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
     })
   } else {
@@ -170,7 +173,7 @@ export function seoHead(page: PageData, srcDir: string, siteDescription: string)
       url,
       mainEntityOfPage: url,
       inLanguage: locale.lang,
-      image: ogImage,
+      image,
       author: { '@id': person['@id'] },
       publisher: { '@id': person['@id'] },
       isPartOf: { '@id': website['@id'] },
