@@ -2,3 +2,5 @@
 */composer.lock
 */temp/
 */actual-output.txt
+*/.phpunit.cache/
+*/.phpunit.result.cache

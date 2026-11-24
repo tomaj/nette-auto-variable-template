@@ -59,7 +59,7 @@ Opening `http://localhost:8000/` gives:
 
 <<< @/../examples/hello-world/expected-output.txt{html}
 
-The file above is what `php run.php` in `examples/hello-world` prints; it requests `/` and `/home/about` from `www/index.php` in a fresh PHP process each, as the built-in server would. CI compares it with the real output on every pull request.
+The file above is what `php run.php` in `examples/hello-world` prints; it starts the application in PHP's built-in server, as above, and requests `/` and `/home/about`. CI compares it with the real output on every pull request.
 
 ## Without Nette DI
 
