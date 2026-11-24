@@ -13,6 +13,7 @@
     "docs:preview": "vitepress preview",
     "docs:links": "bash scripts/check-links.sh",
     "check:svg": "python3 scripts/check-svg.py",
+    "check:locales": "python3 scripts/check-locales.py",
     "images": "node scripts/icons.mjs && node scripts/og-image.mjs"
   },
   "license": "LGPL-2.0-or-later",

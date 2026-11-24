@@ -1,15 +1,19 @@
 <script setup lang="ts">
-import { withBase } from 'vitepress'
+import { useRoute, withBase } from 'vitepress'
+import { computed } from 'vue'
+import { stringsFor } from './i18n'
 
-const links = [['Home', '/'], ['Getting started', '/guide/getting-started'], ['Examples', '/examples/'], ['API reference', '/api/reference'], ['FAQ', '/faq']]
+// The 404 page has no locale of its own: pick the language from the requested path.
+const route = useRoute()
+const t = computed(() => stringsFor(route.path.startsWith(withBase('/sk/')) ? 'sk' : 'en'))
 </script>
 
 <template>
   <div class="navt-404">
     <p class="code">{$404}</p>
-    <h1>Page not found</h1>
-    <p>This page does not exist or has moved. Try one of these:</p>
-    <ul><li v-for="[name, url] in links" :key="url"><a :href="withBase(url)">{{ name }}</a></li></ul>
+    <h1>{{ t.notFoundTitle }}</h1>
+    <p>{{ t.notFoundText }}</p>
+    <ul><li v-for="[name, url] in t.notFoundLinks" :key="url"><a :href="withBase(url)">{{ name }}</a></li></ul>
   </div>
 </template>
 
