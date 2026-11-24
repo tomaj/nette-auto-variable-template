@@ -6,6 +6,9 @@
 - public/icons/<name>.svg and <name>-dark.svg: the feature icons of the home page
 - public/diagrams/lifecycle-*.svg: what happens, in order, when a template is created
 
+The hero and the diagram have text, so they are also written in Slovak (hero-sk-*.svg, lifecycle-sk-*.svg)
+for the pages under docs/sk/.
+
 Run: python3 scripts/illustrations.py, then python3 scripts/check-svg.py
 """
 from pathlib import Path
@@ -49,10 +52,24 @@ def card(x, y, w, h, name, lines, c):
     return "\n".join(out)
 
 
-def svg(c):
+HERO_TEXT = {
+    "en": dict(
+        aria="One registerVariable line in config.neon goes through AutoVariableTemplateFactory into every template: a presenter layout, a component and an e-mail all print the app name",
+        email=["Hello {$name},", "thanks for", "shopping at"],
+        labels=["presenter", "component", "any template"],
+    ),
+    "sk": dict(
+        aria="Jeden riadok registerVariable v config.neon prejde cez AutoVariableTemplateFactory do každej šablóny: layout presentera, komponent aj e-mail vypíšu názov aplikácie",
+        email=["Dobrý deň {$name},", "ďakujeme za", "nákup v"],
+        labels=["presenter", "komponent", "akákoľvek šablóna"],
+    ),
+}
+
+
+def svg(c, t=HERO_TEXT["en"]):
     parts = [
         '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 460" width="560" height="460" role="img" '
-        'aria-label="One registerVariable line in config.neon goes through AutoVariableTemplateFactory into every template: a presenter layout, a component and an e-mail all print the app name">',
+        f'aria-label="{t["aria"]}">',
         f'<circle cx="280" cy="214" r="200" fill="{c["glow"]}" opacity="0.55"/>',
         card(60, 14, 440, 112, "config.neon", [
             [("k", "templateFactory"), ("m", ":")],
@@ -86,14 +103,14 @@ def svg(c):
             [("m", "&lt;/nav&gt;")],
         ], c),
         card(376, 270, 168, 150, "email.latte", [
-            [("t", "Hello {$name},")],
-            [("t", "thanks for")],
-            [("t", "shopping at")],
+            [("t", t["email"][0])],
+            [("t", t["email"][1])],
+            [("t", t["email"][2])],
             [("chip", "{$appName}"), ("t", ".")],
         ], c),
-        f'<text x="100" y="444" text-anchor="middle" font-family="{SANS}" font-size="12" fill="{c["muted"]}">presenter</text>',
-        f'<text x="280" y="444" text-anchor="middle" font-family="{SANS}" font-size="12" fill="{c["muted"]}">component</text>',
-        f'<text x="460" y="444" text-anchor="middle" font-family="{SANS}" font-size="12" fill="{c["muted"]}">any template</text>',
+        f'<text x="100" y="444" text-anchor="middle" font-family="{SANS}" font-size="12" fill="{c["muted"]}">{t["labels"][0]}</text>',
+        f'<text x="280" y="444" text-anchor="middle" font-family="{SANS}" font-size="12" fill="{c["muted"]}">{t["labels"][1]}</text>',
+        f'<text x="460" y="444" text-anchor="middle" font-family="{SANS}" font-size="12" fill="{c["muted"]}">{t["labels"][2]}</text>',
         "</svg>",
     ]
     return "\n".join(parts) + "\n"
@@ -152,6 +169,21 @@ def icon(name, c):
     return f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48" aria-hidden="true">{ICONS[name](c)}</svg>\n'
 
 
+LIFECYCLE_SK = [
+    ("1", "Control::createTemplate()", "Presenter alebo komponent si od autowirovanej továrne", "na šablóny vyžiada novú šablónu."),
+    ("2", "Latte TemplateFactory z Nette", "vytvorí šablónu, nastaví $user, $baseUrl, $basePath,", "$flashes, $control, $presenter a spustí svoj onCreate."),
+    ("3", "zaregistrované premenné", "Priradí sa každá hodnota z registerVariable() a nahradí", "hodnotu s rovnakým názvom z kroku 2."),
+    ("4", "handlery $onCreate", "Vaše callbacky bežia v poradí, v akom boli pridané, a môžu", "čítať, meniť alebo pridávať premenné a filtre."),
+    ("5", "presenter / komponent", "action*(), render*() alebo render() komponentu priraďujú", "až po vytvorení šablóny, takže ich hodnoty vyhrávajú."),
+]
+
+LIFECYCLE_ARIA = {
+    "en": "Creating a template: 1. a presenter or component calls createTemplate, 2. Nette's Latte template factory creates it with its default variables and onCreate, "
+          "3. the registered variables are assigned, 4. the onCreate handlers of AutoVariableTemplateFactory run, 5. the presenter or component sets its own variables.",
+    "sk": "Vytvorenie šablóny: 1. presenter alebo komponent zavolá createTemplate, 2. Latte továreň na šablóny z Nette ju vytvorí s predvolenými premennými a svojím onCreate, "
+          "3. priradia sa zaregistrované premenné, 4. spustia sa handlery onCreate z AutoVariableTemplateFactory, 5. presenter alebo komponent nastaví vlastné premenné.",
+}
+
 LIFECYCLE = [
     ("1", "Control::createTemplate()", "A presenter or component asks the autowired", "template factory for a new template."),
     ("2", "Nette's Latte TemplateFactory", "creates the template, sets $user, $baseUrl, $basePath,", "$flashes, $control, $presenter and runs its onCreate."),
@@ -161,13 +193,13 @@ LIFECYCLE = [
 ]
 
 
-def lifecycle(c):
+def lifecycle(c, lang="en"):
+    steps = LIFECYCLE_SK if lang == "sk" else LIFECYCLE
     out = [
         '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 520" width="640" height="520" role="img" '
-        'aria-label="Creating a template: 1. a presenter or component calls createTemplate, 2. Nette\'s Latte template factory creates it with its default variables and onCreate, '
-        '3. the registered variables are assigned, 4. the onCreate handlers of AutoVariableTemplateFactory run, 5. the presenter or component sets its own variables.">',
+        f'aria-label="{LIFECYCLE_ARIA[lang]}">',
     ]
-    for i, (num, title, line1, line2) in enumerate(LIFECYCLE):
+    for i, (num, title, line1, line2) in enumerate(steps):
         y = 12 + i * 102
         ours = num in ("3", "4")
         box = c["factory"] if ours else c["card"]
@@ -183,7 +215,7 @@ def lifecycle(c):
         ]
         if ours:
             out.append(f'<text x="612" y="{y+30}" text-anchor="end" font-family="{SANS}" font-size="11" font-weight="600" fill="#fbbf24">AutoVariableTemplateFactory</text>')
-        if i < len(LIFECYCLE) - 1:
+        if i < len(steps) - 1:
             out.append(f'<path d="M40 {y+64}v34" stroke="{c["arrow"]}" stroke-width="2.5" stroke-linecap="round"/>')
             out.append(f'<path d="M34 {y+92}l6 7 6-7" fill="none" stroke="{c["arrow"]}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>')
     out.append("</svg>")
@@ -194,6 +226,8 @@ PUBLIC = OUT.parent
 for name, colors in THEMES.items():
     (OUT / f"hero-{name}.svg").write_text(svg(colors), encoding="utf-8")
     (PUBLIC / "diagrams" / f"lifecycle-{name}.svg").write_text(lifecycle(colors), encoding="utf-8")
+    (OUT / f"hero-sk-{name}.svg").write_text(svg(colors, HERO_TEXT["sk"]), encoding="utf-8")
+    (PUBLIC / "diagrams" / f"lifecycle-sk-{name}.svg").write_text(lifecycle(colors, "sk"), encoding="utf-8")
 for name, colors in ICON_THEMES.items():
     for icon_name in ICONS:
         suffix = "" if name == "light" else "-dark"
