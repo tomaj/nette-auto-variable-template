@@ -1,10 +1,14 @@
 # Nette Auto Variable Template
 
+<p align="left">
+  <img src="docs/public/logo.svg" alt="Nette Auto Variable Template" width="96" height="96" />
+</p>
+
 **Variables registered once, available in every Nette template**
 
 **Documentation: https://tomaj.github.io/nette-auto-variable-template/**
 
-[Getting started](https://tomaj.github.io/nette-auto-variable-template/guide/getting-started) · [API reference](https://tomaj.github.io/nette-auto-variable-template/api/reference) · [Changelog](https://tomaj.github.io/nette-auto-variable-template/changelog)
+[Getting started](https://tomaj.github.io/nette-auto-variable-template/guide/getting-started) · [Examples](https://tomaj.github.io/nette-auto-variable-template/examples/) · [API reference](https://tomaj.github.io/nette-auto-variable-template/api/reference) · [Changelog](https://tomaj.github.io/nette-auto-variable-template/changelog)
 
 [![Latest Stable Version](https://img.shields.io/packagist/v/tomaj/nette-auto-variable-template.svg)](https://packagist.org/packages/tomaj/nette-auto-variable-template)
 [![CI](https://github.com/tomaj/nette-auto-variable-template/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/tomaj/nette-auto-variable-template/actions/workflows/ci.yml?query=branch%3Amaster)
@@ -52,7 +56,7 @@ Every template can now use the variables:
 <p>Version: {$settings->getVersion()}</p>
 ```
 
-`$factory->onCreate[]` takes callbacks that run for every new template, after the variables are assigned. Read the [documentation](https://tomaj.github.io/nette-auto-variable-template/) for more.
+`$factory->onCreate[]` takes callbacks that run for every new template, after the variables are assigned. Read the [documentation](https://tomaj.github.io/nette-auto-variable-template/) for more, and the [examples](examples/): small Nette applications, tested in CI, that show the variables in layouts, components, `onCreate` handlers and typed templates.
 
 ## Upgrading
 

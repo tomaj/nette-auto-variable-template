@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Nette Auto Variable Template">
+  <rect x="2" y="2" width="60" height="60" rx="14" fill="#134e4a" stroke="#2dd4bf" stroke-width="2"/>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 15c-5 0-6 2-6 7v4c0 4-2 6-5 6 3 0 5 2 5 6v4c0 5 1 7 6 7" stroke="#99f6e4" stroke-width="4.5"/>
+    <path d="M43 15c5 0 6 2 6 7v4c0 4 2 6 5 6-3 0-5 2-5 6v4c0 5-1 7-6 7" stroke="#99f6e4" stroke-width="4.5"/>
+    <path d="M37.5 25.5c-1-2.6-3-3.5-5.5-3.5-3.2 0-5.5 1.7-5.5 4.3 0 3 2.6 3.8 5.5 4.4 3.1.6 5.8 1.6 5.8 4.7 0 2.8-2.4 4.6-5.8 4.6-2.7 0-4.9-1.1-5.9-3.7M32 17.5v29" stroke="#fbbf24" stroke-width="3.6"/>
+  </g>
+</svg>

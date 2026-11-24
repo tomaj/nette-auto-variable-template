@@ -1,0 +1,32 @@
+=== GET / ===
+<!DOCTYPE html>
+<html lang="en">
+<body>
+<dl>
+	<dt>z</dt><dd>Nette onCreate</dd>
+	<dt>a</dt><dd>registered</dd>
+	<dt>b</dt><dd>onCreate</dd>
+	<dt>c</dt><dd>presenter</dd>
+	<dt>theme</dt><dd>dark</dd>
+	<dt>basePath</dt><dd>/static</dd>
+	<dt>baseUrl</dt><dd>http://localhost:8000</dd>
+</dl>
+</body>
+</html>
+
+=== GET /home/plain ===
+<!DOCTYPE html>
+<html lang="en">
+<body>
+<dl>
+	<dt>z</dt><dd>Nette onCreate</dd>
+	<dt>a</dt><dd>registered</dd>
+	<dt>b</dt><dd>onCreate</dd>
+	<dt>c</dt><dd>onCreate</dd>
+	<dt>theme</dt><dd>dark</dd>
+	<dt>basePath</dt><dd>/static</dd>
+	<dt>baseUrl</dt><dd>http://localhost:8000</dd>
+</dl>
+</body>
+</html>
+

@@ -1,0 +1,45 @@
+name: Examples
+
+# Runs every example in examples/ against the code of the push or pull request (the examples'
+# composer.json use the repository root as a Composer path repository, see examples/ci/run.sh)
+# and compares its output with expected-output.txt.
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+permissions:
+  contents: read
+
+# a new push to a pull request cancels its older run
+concurrency:
+  group: examples-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  example:
+    name: Example ${{ matrix.example }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        example: [hello-world, components, on-create, precedence, typed-template, without-di, testing]
+
+    steps:
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      with:
+        persist-credentials: false
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@e8d43d139fbfbe401c32ef3a3a32e14075f20122 # main after 2.40.0 (PHP 8.6 stable)
+      with:
+        php-version: '8.4'
+        extensions: mbstring, xml
+        coverage: none
+
+    - name: Run examples/${{ matrix.example }}
+      env:
+        EXAMPLE: ${{ matrix.example }}
+      run: examples/ci/run.sh "$EXAMPLE"

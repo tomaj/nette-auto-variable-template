@@ -1,0 +1,6 @@
+{templateType App\Presenters\HomeTemplate}
+{block content}
+<main>
+	<h1>{$title}</h1>
+	<p>{$appName} {$settings->version} rendered by {get_class($presenter)}, template class {get_class($presenter->getTemplate())}.</p>
+</main>

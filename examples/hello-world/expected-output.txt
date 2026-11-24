@@ -1,0 +1,32 @@
+=== GET / ===
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Welcome | Acme Shop</title>
+</head>
+<body>
+	<header>Acme Shop</header>
+<main>
+	<h1>Welcome</h1>
+	<p>Welcome to Acme Shop. <a href="/home/about">About us</a></p>
+</main>
+	<footer>Acme Shop 4.0.0 · <a href="mailto:help@acme.test">help@acme.test</a></footer>
+</body>
+</html>
+
+=== GET /home/about ===
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>About us | Acme Shop</title>
+</head>
+<body>
+	<header>Acme Shop</header>
+<main>
+	<h1>About us</h1>
+	<p>Acme Shop runs version 4.0.0.</p>
+</main>
+	<footer>Acme Shop 4.0.0 · <a href="mailto:help@acme.test">help@acme.test</a></footer>
+</body>
+</html>
+

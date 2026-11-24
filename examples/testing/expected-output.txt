@@ -1,0 +1,9 @@
+
+
+
+Template Variables (App\Tests\TemplateVariables)
+ ✔ The decorator is the autowired template factory
+ ✔ Every new template has the variables
+ ✔ The presenter renders them
+
+OK (3 tests, 8 assertions)

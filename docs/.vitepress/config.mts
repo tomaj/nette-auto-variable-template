@@ -1,52 +1,95 @@
 import { defineConfig } from 'vitepress'
+import { seoHead, siteName, siteUrl } from './seo'
 
 const repo = 'https://github.com/tomaj/nette-auto-variable-template'
-const description = 'Nette template factory that assigns registered variables to every Latte template.'
+const base = process.env.DOCS_BASE || '/nette-auto-variable-template/'
+const description = 'Register variables once and use them in every Latte template of your Nette application: presenters, components and templates you create yourself.'
 
 export default defineConfig({
-  title: 'Nette Auto Variable Template',
+  title: siteName,
   description,
-  base: '/nette-auto-variable-template/',
+  base,
+  lang: 'en',
   cleanUrls: true,
   lastUpdated: true,
+  srcExclude: ['public/**', 'scripts/**'],
 
   sitemap: {
-    hostname: 'https://tomaj.github.io/nette-auto-variable-template/',
+    hostname: siteUrl,
   },
 
   head: [
-    ['link', { rel: 'icon', type: 'image/svg+xml', href: '/nette-auto-variable-template/favicon.svg' }],
-    ['meta', { property: 'og:type', content: 'website' }],
-    ['meta', { property: 'og:title', content: 'Nette Auto Variable Template' }],
-    ['meta', { property: 'og:description', content: description }],
-    ['meta', { property: 'og:url', content: 'https://tomaj.github.io/nette-auto-variable-template/' }],
+    ['link', { rel: 'icon', href: `${base}favicon.ico`, sizes: '48x48' }],
+    ['link', { rel: 'icon', type: 'image/svg+xml', href: `${base}favicon.svg` }],
+    ['link', { rel: 'icon', type: 'image/png', sizes: '32x32', href: `${base}favicon-32.png` }],
+    ['link', { rel: 'icon', type: 'image/png', sizes: '16x16', href: `${base}favicon-16.png` }],
+    ['link', { rel: 'apple-touch-icon', sizes: '180x180', href: `${base}apple-touch-icon.png` }],
+    ['link', { rel: 'manifest', href: `${base}site.webmanifest` }],
+    ['meta', { name: 'theme-color', content: '#0f766e' }],
   ],
 
+  markdown: {
+    languageAlias: { latte: 'html', neon: 'yaml' },
+  },
+
+  transformHead({ pageData, siteConfig }) {
+    return seoHead(pageData, siteConfig.srcDir, description)
+  },
+
   themeConfig: {
-    logo: '/logo.svg',
+    logo: { light: '/logo.svg', dark: '/logo-dark.svg', alt: siteName },
 
     nav: [
-      { text: 'Getting started', link: '/guide/getting-started' },
+      { text: 'Guide', link: '/guide/getting-started', activeMatch: '^/guide/' },
+      { text: 'Examples', link: '/examples/', activeMatch: '^/examples/' },
       { text: 'API', link: '/api/reference' },
       {
         text: '4.x',
         items: [
           { text: '4.x (master, unreleased)', link: '/' },
           { text: '3.x (README)', link: `${repo}/tree/3.0.0#readme` },
-          { text: 'Upgrading 3.x → 4.0', link: `${repo}/blob/master/UPGRADE-4.0.md` },
+          { text: 'Upgrading 3.x → 4.0', link: '/upgrade' },
+          { text: 'Changelog', link: '/changelog' },
+          { text: 'Releases', link: `${repo}/releases` },
         ],
       },
-      { text: 'Changelog', link: '/changelog' },
-      { text: 'Releases', link: `${repo}/releases` },
     ],
 
     sidebar: [
       {
-        text: 'Documentation',
+        text: 'Guide',
         items: [
           { text: 'Getting started', link: '/guide/getting-started' },
+          { text: 'How it works', link: '/guide/how-it-works' },
+          { text: 'Configuration', link: '/guide/configuration' },
+          { text: 'Presenters and components', link: '/guide/templates' },
+          { text: 'Running code: onCreate', link: '/guide/on-create' },
+          { text: 'Custom template classes', link: '/guide/template-classes' },
+          { text: 'Testing', link: '/guide/testing' },
+          { text: 'Security', link: '/guide/security' },
+        ],
+      },
+      {
+        text: 'Examples',
+        items: [
+          { text: 'Overview', link: '/examples/' },
+          { text: 'Hello world', link: '/examples/hello-world' },
+          { text: 'Components', link: '/examples/components' },
+          { text: 'onCreate: filters and per-template values', link: '/examples/on-create' },
+          { text: 'Which value wins', link: '/examples/precedence' },
+          { text: 'Typed templates', link: '/examples/typed-template' },
+          { text: 'Without Nette DI', link: '/examples/without-di' },
+          { text: 'Testing', link: '/examples/testing' },
+        ],
+      },
+      {
+        text: 'Reference',
+        items: [
           { text: 'API reference', link: '/api/reference' },
+          { text: 'FAQ', link: '/faq' },
+          { text: 'Upgrading to 4.0', link: '/upgrade' },
           { text: 'Changelog', link: '/changelog' },
+          { text: 'Contributing', link: '/contributing' },
         ],
       },
     ],
@@ -56,6 +99,14 @@ export default defineConfig({
     editLink: {
       pattern: `${repo}/edit/master/docs/:path`,
       text: 'Edit this page on GitHub',
+    },
+
+    lastUpdated: {
+      text: 'Last updated',
+    },
+
+    outline: {
+      level: [2, 3],
     },
 
     search: {

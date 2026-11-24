@@ -49,6 +49,10 @@ npm run docs:dev
 npm run docs:links
 ```
 
+`npm run images` regenerates the favicons and `public/og.png` after a logo change (needs Chrome, set `CHROME_PATH`), `python3 scripts/illustrations.py` the hero illustration, icons and diagrams, and `npm run check:svg` checks every SVG.
+
+Every example in `examples/` is a small project with a `run.php` and an `expected-output.txt`. `examples/ci/run.sh <name>` installs it against this checkout, runs it and diffs the output, as the `Examples` workflow does. A change that changes an example's output updates `expected-output.txt` in the same pull request.
+
 Maintainers publish releases by pushing a version tag; see [RELEASING.md](RELEASING.md).
 
 By contributing, you agree that your contributions are licensed under the license of this package as declared in `composer.json` (currently LGPL-2.0-or-later).

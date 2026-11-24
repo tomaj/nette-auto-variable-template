@@ -1,0 +1,7 @@
+Registered: appName, company
+
+<h1>Acme Shop: invoice 2026-0042</h1>
+<p>Issued 2026-11-24, payable to Acme s.r.o., IBAN SK31 1200 0000 1987 4263 7541.</p>
+
+Hello Jane,
+your order at Acme Shop is on its way. Questions? Write to billing@acme.test.

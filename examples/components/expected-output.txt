@@ -1,0 +1,40 @@
+=== GET / ===
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Acme Shop</title>
+</head>
+<body>
+<nav aria-label="Acme Shop">
+	<strong>Acme Shop</strong>
+	<a href="/">Home</a>
+	<a href="/home/products">Products</a>
+</nav>
+<main>
+	<h1>Acme Shop</h1>
+	<p>Prices in EUR.</p>
+</main>
+<aside class="cart">3 items, 59.70 EUR <small>(cart in Acme Shop)</small></aside>
+</body>
+</html>
+
+=== GET /home/products ===
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Acme Shop</title>
+</head>
+<body>
+<nav aria-label="Acme Shop">
+	<strong>Acme Shop</strong>
+	<a href="/">Home</a>
+	<a href="/home/products">Products</a>
+</nav>
+<main>
+	<h1>Products</h1>
+	<p>Coffee mug, 19.90 EUR</p>
+</main>
+<aside class="cart">3 items, 59.70 EUR <small>(cart in Acme Shop)</small></aside>
+</body>
+</html>
+

@@ -1,0 +1,15 @@
+=== GET / ===
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Acme Shop</title>
+</head>
+<body class="page-home-default">
+<main>
+	<h1>Acme Shop</h1>
+<p class="component-price">Price: 19.90 EUR</p>
+	<p>Order total: 1 234.50 EUR</p>
+</main>
+</body>
+</html>
+

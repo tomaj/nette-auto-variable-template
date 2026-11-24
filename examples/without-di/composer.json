@@ -1,0 +1,29 @@
+{
+    "name": "tomaj/nette-auto-variable-template-example-without-di",
+    "description": "The factory wired by hand, without Nette DI or a presenter",
+    "type": "project",
+    "license": "LGPL-2.0-or-later",
+    "require": {
+        "php": "^8.4",
+        "latte/latte": "^3.0",
+        "nette/application": "^3.2",
+        "tomaj/nette-auto-variable-template": "dev-master"
+    },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../..",
+            "options": {
+                "symlink": true,
+                "versions": {
+                    "tomaj/nette-auto-variable-template": "dev-master"
+                }
+            }
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "config": {
+        "sort-packages": true
+    }
+}

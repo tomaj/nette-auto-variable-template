@@ -1,0 +1,33 @@
+application:
+	mapping: App\Presenters\*Presenter
+	catchExceptions: false
+
+latte:
+	strictTypes: yes
+
+services:
+	# 2. Nette's factory creates the template, sets $basePath, $baseUrl, $user, ... and calls its own onCreate
+	latte.templateFactory:
+		autowired: no
+		setup:
+			- '$onCreate[]' = [@App\Templates\Stages, 'innerOnCreate']
+
+	templateFactory:
+		factory: Tomaj\Latte\AutoVariableTemplateFactory(@latte.templateFactory)
+		setup:
+			# 3. then the registered variables are assigned
+			- registerVariable('a', 'registered')
+			- registerVariable('b', 'registered')
+			- registerVariable('c', 'registered')
+			- registerVariable('theme', 'light')
+			- registerVariable('theme', 'dark')        # registered again: replaces 'light'
+			- registerVariable('basePath', '/static')  # replaces the $basePath Nette computed
+			# 4. then the onCreate handlers of this factory run
+			- '$onCreate[]' = [@App\Templates\Stages, 'onCreate']
+
+	- App\Templates\Stages
+
+	router:
+		create: Nette\Application\Routers\RouteList
+		setup:
+			- addRoute('<presenter=Home>[/<action=default>]')

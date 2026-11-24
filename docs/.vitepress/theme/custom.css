@@ -1,0 +1,133 @@
+/**
+ * Brand colours: teal for the template, amber for the variable ({$} in the logo).
+ * https://github.com/vuejs/vitepress/blob/main/src/client/theme-default/styles/vars.css
+ */
+:root {
+  --vp-c-brand-1: #0f766e;
+  --vp-c-brand-2: #0d9488;
+  --vp-c-brand-3: #14b8a6;
+  --vp-c-brand-soft: rgba(20, 184, 166, 0.14);
+
+  --nav-c-accent: #b45309;
+  --nav-c-accent-soft: #fef3c7;
+
+  --vp-button-brand-border: transparent;
+  --vp-button-brand-text: #ffffff;
+  --vp-button-brand-bg: #0f766e;
+  --vp-button-brand-hover-border: transparent;
+  --vp-button-brand-hover-text: #ffffff;
+  --vp-button-brand-hover-bg: #115e59;
+  --vp-button-brand-active-border: transparent;
+  --vp-button-brand-active-text: #ffffff;
+  --vp-button-brand-active-bg: #134e4a;
+
+  --vp-home-hero-name-color: transparent;
+  --vp-home-hero-name-background: linear-gradient(120deg, #0f766e 10%, #0d9488 55%, #d97706 100%);
+  --vp-home-hero-image-background-image: radial-gradient(closest-side, rgba(45, 212, 191, 0.22), transparent);
+  --vp-home-hero-image-filter: blur(48px);
+}
+
+.dark {
+  --vp-c-brand-1: #5eead4;
+  --vp-c-brand-2: #2dd4bf;
+  --vp-c-brand-3: #14b8a6;
+  --vp-c-brand-soft: rgba(94, 234, 212, 0.16);
+
+  --nav-c-accent: #fbbf24;
+  --nav-c-accent-soft: rgba(251, 191, 36, 0.14);
+
+  --vp-button-brand-text: #042f2e;
+  --vp-button-brand-bg: #2dd4bf;
+  --vp-button-brand-hover-text: #042f2e;
+  --vp-button-brand-hover-bg: #5eead4;
+  --vp-button-brand-active-text: #042f2e;
+  --vp-button-brand-active-bg: #14b8a6;
+
+  --vp-home-hero-name-background: linear-gradient(120deg, #5eead4 10%, #2dd4bf 55%, #fbbf24 100%);
+  --vp-home-hero-image-background-image: radial-gradient(closest-side, rgba(20, 184, 166, 0.28), transparent);
+}
+
+/* The hero illustration is wide; give it room next to the text on large screens. */
+.VPHero .image-src { max-width: 300px !important; max-height: 260px !important; }
+@media (min-width: 640px) {
+  .VPHero .image-src { max-width: 420px !important; max-height: 360px !important; }
+}
+@media (min-width: 960px) {
+  .VPHero .image-container { width: 460px !important; height: 420px !important; }
+  .VPHero .image-src { max-width: 460px !important; max-height: 420px !important; }
+}
+
+/* Diagrams with a light and a dark variant: ![...](...){.only-light} and {.only-dark}. */
+.vp-doc img.only-light,
+.vp-doc img.only-dark { display: block; max-width: 100%; height: auto; margin: 1.5rem auto; }
+.vp-doc img.only-dark,
+.dark .vp-doc img.only-light { display: none; }
+.dark .vp-doc img.only-dark { display: block; }
+
+/* Home page sections below the features. */
+.home-more {
+  max-width: 1152px;
+  margin: 0 auto;
+  padding: 48px 24px 0;
+}
+@media (min-width: 640px) { .home-more { padding: 56px 48px 0; } }
+@media (min-width: 960px) { .home-more { padding: 64px 64px 0; } }
+.home-more h2 { margin: 0 0 8px; padding-top: 0; border-top: 0; font-size: 24px; }
+.home-more .two-col { display: grid; gap: 16px; grid-template-columns: 1fr; }
+@media (min-width: 960px) { .home-more .two-col { grid-template-columns: 1fr 1fr; } }
+.home-more .two-col > div { min-width: 0; }
+
+/* Variables in prose: {$appName} highlighted like the chip in the illustration. */
+.vp-doc code.var { background: var(--nav-c-accent-soft); color: var(--nav-c-accent); }
+
+/* Link cards (examples index, home page). */
+.vp-doc ul.link-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  gap: 0.75rem;
+  margin: 1rem 0;
+  padding: 0;
+  list-style: none;
+}
+.vp-doc ul.link-cards li { margin: 0; }
+.vp-doc a.link-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  height: 100%;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 8px;
+  background: var(--vp-c-bg-soft);
+  color: var(--vp-c-text-1);
+  text-decoration: none;
+  transition: border-color 0.2s;
+}
+.vp-doc a.link-card:hover { border-color: var(--vp-c-brand-1); }
+.vp-doc a.link-card:focus-visible { outline: 2px solid var(--vp-c-brand-1); outline-offset: 2px; }
+.link-card-title { font-weight: 600; color: var(--vp-c-brand-1); }
+.link-card-text { font-size: 14px; line-height: 1.5; color: var(--vp-c-text-2); }
+
+/* "Runnable project" box on the example pages (ExampleSource.vue). */
+.example-source {
+  margin: 1.25rem 0;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--vp-c-brand-soft);
+  border-left: 4px solid var(--vp-c-brand-1);
+  border-radius: 8px;
+  background: var(--vp-c-bg-soft);
+}
+.example-source p { margin: 0.25rem 0; }
+.example-source .example-source-label { font-size: 12px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--vp-c-text-2); }
+.example-source a.example-source-button {
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 4px 14px;
+  border-radius: 20px;
+  background: var(--vp-button-brand-bg);
+  color: var(--vp-button-brand-text);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+}
+.example-source a.example-source-button:hover { background: var(--vp-button-brand-hover-bg); }

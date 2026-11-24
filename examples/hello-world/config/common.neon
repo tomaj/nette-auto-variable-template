@@ -1,0 +1,25 @@
+application:
+	mapping: App\Presenters\*Presenter
+	catchExceptions: false
+
+latte:
+	strictTypes: yes
+
+services:
+	# Nette's Latte template factory keeps creating the templates, but is no longer autowired ...
+	latte.templateFactory:
+		autowired: no
+
+	# ... so presenters and components get this decorator, which adds the variables to every template.
+	templateFactory:
+		factory: Tomaj\Latte\AutoVariableTemplateFactory(@latte.templateFactory)
+		setup:
+			- registerVariable('appName', 'Acme Shop')
+			- registerVariable('settings', @App\Model\Settings)
+
+	- App\Model\Settings(version: '4.0.0', supportEmail: 'help@acme.test')
+
+	router:
+		create: Nette\Application\Routers\RouteList
+		setup:
+			- addRoute('<presenter=Home>[/<action=default>]')
