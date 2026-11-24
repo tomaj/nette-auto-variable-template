@@ -13,7 +13,7 @@ foreach ($urls as $url) {
     $html = (string) stream_get_contents($pipes[1]);
     $errors = (string) stream_get_contents($pipes[2]);
     $status = proc_close($process);
-    if ($status !== 0 || $errors !== '' || $html === '') {
+    fwrite(STDERR, $errors); if ($status !== 0 || $html === '') {
         fwrite(STDERR, "GET $url failed with status $status:\n$errors$html");
         exit(1);
     }
