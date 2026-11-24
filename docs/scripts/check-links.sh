@@ -106,7 +106,8 @@ for kind, (prefix, exists) in kinds.items():
     print(f"ok {len(found)} {kind} links match the checkout")
 PY
 
-# github.com edit, blob and tree links are skipped so a 429 or 503 from GitHub
+# github.com edit, blob, tree and workflow links are skipped (a workflow added by a pull request
+# 404s until it is merged) so a 429 or 503 from GitHub
 # cannot fail the check. Absolute links to the published site (canonical,
 # og:url, og:image, sitemap) point at pages this crawl already checks
 # locally; new pages only exist there after the next deploy.
@@ -114,6 +115,7 @@ skip_args=(
   --skip 'https://github\.com/tomaj/nette-auto-variable-template/edit/'
   --skip 'https://github\.com/tomaj/nette-auto-variable-template/blob/master/'
   --skip 'https://github\.com/tomaj/nette-auto-variable-template/tree/master/'
+  --skip 'https://github\.com/tomaj/nette-auto-variable-template/actions/workflows/'
   --skip 'https://tomaj\.github\.io/nette-auto-variable-template/'
 )
 
@@ -137,7 +139,11 @@ while true; do
   if [[ "$status" -eq 0 ]]; then
     break
   fi
-  mapfile -t codes < <(grep -oE '\[[0-9]{3}\]' /tmp/docs-linkinator.txt | tr -d '[]' | sort -u)
+  # a plain read loop instead of mapfile, so the script also runs with macOS bash 3.2
+  codes=()
+  while IFS= read -r code; do
+    codes+=("$code")
+  done < <(grep -oE '\[[0-9]{3}\]' /tmp/docs-linkinator.txt | tr -d '[]' | sort -u)
   if [[ ${#codes[@]} -eq 0 ]]; then
     exit "$status"
   fi

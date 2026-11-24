@@ -1,0 +1,4 @@
+*/vendor/
+*/composer.lock
+*/temp/
+*/actual-output.txt

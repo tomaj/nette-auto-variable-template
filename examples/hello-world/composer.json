@@ -1,0 +1,34 @@
+{
+    "name": "tomaj/nette-auto-variable-template-example-hello-world",
+    "description": "Registered variables in a presenter and its layout",
+    "type": "project",
+    "license": "LGPL-2.0-or-later",
+    "require": {
+        "php": "^8.4",
+        "latte/latte": "^3.0",
+        "nette/bootstrap": "^3.2",
+        "tomaj/nette-auto-variable-template": "dev-master"
+    },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../..",
+            "options": {
+                "symlink": true,
+                "versions": {
+                    "tomaj/nette-auto-variable-template": "dev-master"
+                }
+            }
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    }
+}

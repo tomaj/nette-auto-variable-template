@@ -1,0 +1,1 @@
+{"version":2,"defects":[],"times":{"App\\Tests\\TemplateVariablesTest::testTheDecoratorIsTheAutowiredTemplateFactory":0.001,"App\\Tests\\TemplateVariablesTest::testEveryNewTemplateHasTheVariables":0.002,"App\\Tests\\TemplateVariablesTest::testThePresenterRendersThem":0.019}}

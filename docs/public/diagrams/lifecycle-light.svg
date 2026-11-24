@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 520" width="640" height="520" role="img" aria-label="Creating a template: 1. a presenter or component calls createTemplate, 2. Nette's Latte template factory creates it with its default variables and onCreate, 3. the registered variables are assigned, 4. the onCreate handlers of AutoVariableTemplateFactory run, 5. the presenter or component sets its own variables.">
+<rect x="80" y="12" width="548" height="80" rx="12" fill="#ffffff" stroke="#5eead4" stroke-width="1.5"/>
+<circle cx="40" cy="52" r="22" fill="#f0fdfa" stroke="#5eead4" stroke-width="1.5"/>
+<text x="40" y="59" text-anchor="middle" font-family="Inter, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="20" font-weight="700" fill="#0f766e">1</text>
+<text x="100" y="42" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="15" font-weight="700" fill="#134e4a">Control::createTemplate()</text>
+<text x="100" y="64" font-family="Inter, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="13.5" fill="#64748b">A presenter or component asks the autowired</text>
+<text x="100" y="82" font-family="Inter, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="13.5" fill="#64748b">template factory for a new template.</text>
+<path d="M40 76v34" stroke="#14b8a6" stroke-width="2.5" stroke-linecap="round"/>
+<path d="M34 104l6 7 6-7" fill="none" stroke="#14b8a6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="80" y="114" width="548" height="80" rx="12" fill="#ffffff" stroke="#5eead4" stroke-width="1.5"/>
+<circle cx="40" cy="154" r="22" fill="#f0fdfa" stroke="#5eead4" stroke-width="1.5"/>
+<text x="40" y="161" text-anchor="middle" font-family="Inter, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="20" font-weight="700" fill="#0f766e">2</text>
+<text x="100" y="144" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="15" font-weight="700" fill="#134e4a">Nette's Latte TemplateFactory</text>
+<text x="100" y="166" font-family="Inter, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="13.5" fill="#64748b">creates the template, sets &#36;user, &#36;baseUrl, &#36;basePath,</text>
+<text x="100" y="184" font-family="Inter, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="13.5" fill="#64748b">&#36;flashes, &#36;control, &#36;presenter and runs its onCreate.</text>
+<path d="M40 178v34" stroke="#14b8a6" stroke-width="2.5" stroke-linecap="round"/>
+<path d="M34 206l6 7 6-7" fill="none" stroke="#14b8a6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="80" y="216" width="548" height="80" rx="12" fill="#0f766e" stroke="#5eead4" stroke-width="1.5"/>
+<circle cx="40" cy="256" r="22" fill="#fef3c7" stroke="#5eead4" stroke-width="1.5"/>
+<text x="40" y="263" text-anchor="middle" font-family="Inter, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="20" font-weight="700" fill="#92400e">3</text>
+<text x="100" y="246" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="15" font-weight="700" fill="#ffffff">registered variables</text>
+<text x="100" y="268" font-family="Inter, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="13.5" fill="#ffffff">Every registerVariable() value is assigned, replacing</text>
+<text x="100" y="286" font-family="Inter, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="13.5" fill="#ffffff">a value of the same name from step 2.</text>
+<text x="612" y="246" text-anchor="end" font-family="Inter, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="600" fill="#fbbf24">AutoVariableTemplateFactory</text>
+<path d="M40 280v34" stroke="#14b8a6" stroke-width="2.5" stroke-linecap="round"/>
+<path d="M34 308l6 7 6-7" fill="none" stroke="#14b8a6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="80" y="318" width="548" height="80" rx="12" fill="#0f766e" stroke="#5eead4" stroke-width="1.5"/>
+<circle cx="40" cy="358" r="22" fill="#fef3c7" stroke="#5eead4" stroke-width="1.5"/>
+<text x="40" y="365" text-anchor="middle" font-family="Inter, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="20" font-weight="700" fill="#92400e">4</text>
+<text x="100" y="348" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="15" font-weight="700" fill="#ffffff">$onCreate handlers</text>
+<text x="100" y="370" font-family="Inter, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="13.5" fill="#ffffff">Your callbacks run in the order they were added and</text>
+<text x="100" y="388" font-family="Inter, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="13.5" fill="#ffffff">can read, change or add variables and filters.</text>
+<text x="612" y="348" text-anchor="end" font-family="Inter, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="600" fill="#fbbf24">AutoVariableTemplateFactory</text>
+<path d="M40 382v34" stroke="#14b8a6" stroke-width="2.5" stroke-linecap="round"/>
+<path d="M34 410l6 7 6-7" fill="none" stroke="#14b8a6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="80" y="420" width="548" height="80" rx="12" fill="#ffffff" stroke="#5eead4" stroke-width="1.5"/>
+<circle cx="40" cy="460" r="22" fill="#f0fdfa" stroke="#5eead4" stroke-width="1.5"/>
+<text x="40" y="467" text-anchor="middle" font-family="Inter, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="20" font-weight="700" fill="#0f766e">5</text>
+<text x="100" y="450" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="15" font-weight="700" fill="#134e4a">presenter / component</text>
+<text x="100" y="472" font-family="Inter, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="13.5" fill="#64748b">action*(), render*() or a control's render() assign</text>
+<text x="100" y="490" font-family="Inter, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="13.5" fill="#64748b">after the template exists, so their values win.</text>
+</svg>

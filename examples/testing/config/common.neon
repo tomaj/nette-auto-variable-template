@@ -1,0 +1,24 @@
+parameters:
+	supportEmail: help@acme.test
+
+application:
+	mapping: App\Presenters\*Presenter
+	catchExceptions: false
+
+latte:
+	strictTypes: yes
+
+services:
+	latte.templateFactory:
+		autowired: no
+
+	templateFactory:
+		factory: Tomaj\Latte\AutoVariableTemplateFactory(@latte.templateFactory)
+		setup:
+			- registerVariable('appName', 'Acme Shop')
+			- registerVariable('supportEmail', %supportEmail%)
+
+	router:
+		create: Nette\Application\Routers\RouteList
+		setup:
+			- addRoute('<presenter=Home>[/<action=default>]')

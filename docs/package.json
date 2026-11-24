@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Documentation for tomaj/nette-auto-variable-template",
   "private": true,
+  "type": "module",
   "engines": {
     "node": ">=22"
   },
@@ -10,14 +11,19 @@
     "docs:dev": "vitepress dev",
     "docs:build": "vitepress build",
     "docs:preview": "vitepress preview",
-    "docs:links": "bash scripts/check-links.sh"
+    "docs:links": "bash scripts/check-links.sh",
+    "check:svg": "python3 scripts/check-svg.py",
+    "images": "node scripts/icons.mjs && node scripts/og-image.mjs"
   },
   "license": "LGPL-2.0-or-later",
   "devDependencies": {
     "linkinator": "8.1.0",
+    "puppeteer-core": "25.16.0",
     "vitepress": "1.6.4"
   },
   "overrides": {
-    "vite": "^6.4.5"
+    "vite": "^6.4.5",
+    "glob": "^14.0.6",
+    "minimatch": "^11.0.9"
   }
 }

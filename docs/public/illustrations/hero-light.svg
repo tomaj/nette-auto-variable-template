@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 460" width="560" height="460" role="img" aria-label="One registerVariable line in config.neon goes through AutoVariableTemplateFactory into every template: a presenter layout, a component and an e-mail all print the app name">
+<circle cx="280" cy="214" r="200" fill="#ccfbf1" opacity="0.55"/>
+<g transform="translate(60 14)">
+<rect width="440" height="112" rx="12" fill="#ffffff" stroke="#5eead4" stroke-width="1.5"/>
+<path d="M0 12a12 12 0 0 1 12-12h416a12 12 0 0 1 12 12v16H0z" fill="#f0fdfa"/>
+<circle cx="14" cy="14" r="3.5" fill="#5eead4"/>
+<text x="26" y="18.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11.5" fill="#64748b">config.neon</text>
+<text x="14" y="50" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#0f766e" xml:space="preserve">templateFactory</text>
+<text x="122.0" y="50" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#64748b" xml:space="preserve">:</text>
+<text x="14" y="72" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#64748b" xml:space="preserve">  setup:</text>
+<text x="14" y="94" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#64748b" xml:space="preserve">    - registerVariable(</text>
+<text x="179.6" y="94" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#b45309" xml:space="preserve">'appName'</text>
+<text x="244.39999999999998" y="94" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#64748b" xml:space="preserve">, </text>
+<text x="258.79999999999995" y="94" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#b45309" xml:space="preserve">'Acme'</text>
+<text x="301.99999999999994" y="94" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#64748b" xml:space="preserve">)</text>
+</g>
+<path d="M280 128v28" stroke="#14b8a6" stroke-width="2.5" stroke-linecap="round"/>
+<path d="M273 150l7 9 7-9" fill="none" stroke="#14b8a6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<g transform="translate(130 164)">
+<rect width="300" height="52" rx="26" fill="#0f766e" stroke="#14b8a6" stroke-width="1.5"/>
+<g transform="translate(14 10) scale(0.5)" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15c-5 0-6 2-6 7v4c0 4-2 6-5 6 3 0 5 2 5 6v4c0 5 1 7 6 7M43 15c5 0 6 2 6 7v4c0 4 2 6 5 6-3 0-5 2-5 6v4c0 5-1 7-6 7" stroke="#ffffff" stroke-width="4.5"/><path d="M37.5 25.5c-1-2.6-3-3.5-5.5-3.5-3.2 0-5.5 1.700-5.5 4.300 0 3 2.600 3.800 5.5 4.400 3.100.6 5.800 1.600 5.800 4.700 0 2.800-2.400 4.600-5.800 4.600-2.700 0-4.900-1.100-5.900-3.700M32 17.5v29" stroke="#fbbf24" stroke-width="3.6"/></g>
+<text x="54" y="31" font-family="Inter, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="15" font-weight="600" fill="#ffffff">AutoVariableTemplateFactory</text>
+</g>
+<path d="M280 218C280 240 100 234 100 260" fill="none" stroke="#14b8a6" stroke-width="2.5" stroke-linecap="round"/>
+<path d="M93 255l7 9 7-9" fill="none" stroke="#14b8a6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M280 218C280 240 280 234 280 260" fill="none" stroke="#14b8a6" stroke-width="2.5" stroke-linecap="round"/>
+<path d="M273 255l7 9 7-9" fill="none" stroke="#14b8a6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M280 218C280 240 460 234 460 260" fill="none" stroke="#14b8a6" stroke-width="2.5" stroke-linecap="round"/>
+<path d="M453 255l7 9 7-9" fill="none" stroke="#14b8a6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<g transform="translate(16 270)">
+<rect width="168" height="150" rx="12" fill="#ffffff" stroke="#5eead4" stroke-width="1.5"/>
+<path d="M0 12a12 12 0 0 1 12-12h144a12 12 0 0 1 12 12v16H0z" fill="#f0fdfa"/>
+<circle cx="14" cy="14" r="3.5" fill="#5eead4"/>
+<text x="26" y="18.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11.5" fill="#64748b">@layout.latte</text>
+<text x="14" y="50" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#64748b" xml:space="preserve">&lt;title&gt;</text>
+<text x="14" y="72" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#134e4a" xml:space="preserve">  </text>
+<rect x="25.4" y="58" width="78.0" height="20" rx="5" fill="#fef3c7"/>
+<text x="28.4" y="72" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="700" fill="#92400e">{$appName}</text>
+<text x="14" y="94" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#64748b" xml:space="preserve">&lt;/title&gt;</text>
+<text x="14" y="116" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#64748b" xml:space="preserve">{include content}</text>
+</g>
+<g transform="translate(196 270)">
+<rect width="168" height="150" rx="12" fill="#ffffff" stroke="#5eead4" stroke-width="1.5"/>
+<path d="M0 12a12 12 0 0 1 12-12h144a12 12 0 0 1 12 12v16H0z" fill="#f0fdfa"/>
+<circle cx="14" cy="14" r="3.5" fill="#5eead4"/>
+<text x="26" y="18.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11.5" fill="#64748b">menu.latte</text>
+<text x="14" y="50" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#64748b" xml:space="preserve">&lt;nav&gt;</text>
+<text x="14" y="72" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#134e4a" xml:space="preserve">  </text>
+<rect x="25.4" y="58" width="78.0" height="20" rx="5" fill="#fef3c7"/>
+<text x="28.4" y="72" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="700" fill="#92400e">{$appName}</text>
+<text x="14" y="94" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#64748b" xml:space="preserve">  {foreach …}</text>
+<text x="14" y="116" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#64748b" xml:space="preserve">&lt;/nav&gt;</text>
+</g>
+<g transform="translate(376 270)">
+<rect width="168" height="150" rx="12" fill="#ffffff" stroke="#5eead4" stroke-width="1.5"/>
+<path d="M0 12a12 12 0 0 1 12-12h144a12 12 0 0 1 12 12v16H0z" fill="#f0fdfa"/>
+<circle cx="14" cy="14" r="3.5" fill="#5eead4"/>
+<text x="26" y="18.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11.5" fill="#64748b">email.latte</text>
+<text x="14" y="50" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#134e4a" xml:space="preserve">Hello {$name},</text>
+<text x="14" y="72" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#134e4a" xml:space="preserve">thanks for</text>
+<text x="14" y="94" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#134e4a" xml:space="preserve">shopping at</text>
+<rect x="11" y="102" width="78.0" height="20" rx="5" fill="#fef3c7"/>
+<text x="14" y="116" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="700" fill="#92400e">{$appName}</text>
+<text x="86.0" y="116" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#134e4a" xml:space="preserve">.</text>
+</g>
+<text x="100" y="444" text-anchor="middle" font-family="Inter, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12" fill="#64748b">presenter</text>
+<text x="280" y="444" text-anchor="middle" font-family="Inter, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12" fill="#64748b">component</text>
+<text x="460" y="444" text-anchor="middle" font-family="Inter, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12" fill="#64748b">any template</text>
+</svg>

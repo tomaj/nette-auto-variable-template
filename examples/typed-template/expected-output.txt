@@ -1,0 +1,18 @@
+=== GET / ===
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Typed template | Acme Shop</title>
+</head>
+<body>
+<main>
+	<h1>Typed template</h1>
+	<p>Acme Shop 4.0.0 rendered by App\Presenters\HomePresenter, template class App\Presenters\HomeTemplate.</p>
+</main>
+</body>
+</html>
+
+=== php undeclared.php ===
+Deprecated: Creation of dynamic property PlainTemplate::$appName is deprecated
+Deprecated: Creation of dynamic property PlainTemplate::$settings is deprecated
+appName is still assigned: Acme Shop
