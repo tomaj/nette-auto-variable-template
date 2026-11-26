@@ -2,7 +2,7 @@
     "name": "tomaj/nette-auto-variable-template-example-typed-template",
     "description": "Registered variables declared on a custom template class",
     "type": "project",
-    "license": "LGPL-2.0-or-later",
+    "license": "MIT",
     "require": {
         "php": "^8.4",
         "latte/latte": "^3.0",

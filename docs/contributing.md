@@ -56,3 +56,7 @@ npm run check:svg   # check every SVG in public/
 ## Releases
 
 Maintainers publish releases by pushing a version tag, as described in [RELEASING.md](https://github.com/tomaj/nette-auto-variable-template/blob/master/RELEASING.md).
+
+## License
+
+The package is released under the [MIT License](https://github.com/tomaj/nette-auto-variable-template/blob/master/LICENSE) (versions up to 3.x under `LGPL-2.0-or-later`). By contributing, you agree that your contributions are licensed under it.
