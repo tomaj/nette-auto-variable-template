@@ -1,6 +1,6 @@
 ---
 title: Prechod na 4.0
-description: Ako prejsť z nette-auto-variable-template 3.x na 4.0 - PHP 8.4, final trieda a koniec Nette\SmartObject.
+description: Ako prejsť z nette-auto-variable-template 3.x na 4.0 - PHP 8.4, final trieda, koniec Nette\SmartObject a licencia MIT.
 ---
 
 # Prechod z 3.x na 4.0 {#upgrading-from-3-x-to-4-0}
@@ -104,6 +104,12 @@ foreach ($factory->onCreate as $handler) {
 - Čítanie alebo zápis vlastnosti, ktorú trieda nedeklaruje, už nevyhadzuje `Nette\MemberAccessException`; PHP to hlási ako pri ktorejkoľvek inej triede.
 
 `nette/utils` už nie je priama závislosť. Ak vaša aplikácia sama používa `Nette\Utils`, pridajte `nette/utils` do vlastného `composer.json` (nette/application ho stále nainštaluje).
+
+## Licencia: MIT {#licence-mit}
+
+Verzia 4.0 je vydaná pod licenciou MIT (`LICENSE`); 3.x a staršie zostávajú pod `LGPL-2.0-or-later`. MIT je voľnejšia, takže kód netreba meniť; ak váš projekt eviduje licencie závislostí, aktualizujte záznam.
+
+Predtým (`composer.json` balíka): `"license": "LGPL-2.0-or-later"`. Potom: `"license": "MIT"`.
 
 ## Typované triedy šablón dostanú len premenné, ktoré deklarujú {#typed-template-classes-get-only-the-variables-they-declare}
 

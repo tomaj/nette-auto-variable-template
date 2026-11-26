@@ -100,6 +100,12 @@ foreach ($factory->onCreate as $handler) {
 
 `nette/utils` is no longer required directly. If your application uses `Nette\Utils` itself, require `nette/utils` in your own `composer.json` (nette/application still installs it).
 
+## Licence: MIT
+
+4.0 is released under the MIT License (`LICENSE`); 3.x and older stay under `LGPL-2.0-or-later`. MIT is more permissive, so no code changes; if your project tracks the licences of its dependencies, update the entry.
+
+Before (`composer.json` of the package): `"license": "LGPL-2.0-or-later"`. After: `"license": "MIT"`.
+
 ## Typed template classes get only the variables they declare
 
 Not a breaking change for code without deprecations, but the behaviour is visible. 3.x assigned every registered variable to every template; on a [type-safe template class](https://tomaj.github.io/nette-auto-variable-template/guide/template-classes) that does not declare a variable, PHP reported "Creation of dynamic property ... is deprecated" and the value was assigned anyway. 4.0 skips such a variable for that class, without the deprecation. Classes that declare the property, have `#[\AllowDynamicProperties]` (on the class or a parent, as Nette's `DefaultTemplate` has) or `__set()` get it as before.
