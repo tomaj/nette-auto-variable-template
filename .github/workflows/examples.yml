@@ -25,7 +25,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        example: [hello-world, components, on-create, precedence, typed-template, without-di, testing]
+        example: [hello-world, components, on-create, precedence, typed-template, without-di, testing, lazy-service]
 
     steps:
     - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1

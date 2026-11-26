@@ -1,0 +1,32 @@
+=== GET / ===
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Welcome | Acme Shop</title>
+</head>
+<body>
+<main>
+	<h1>Welcome</h1>
+	<p>This page does not use $rates. <a href="/home/rates">Exchange rates</a></p>
+</main>
+</body>
+</html>
+
+--- ExchangeRates constructor calls so far: 0
+
+=== GET /home/rates ===
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Exchange rates | Acme Shop</title>
+</head>
+<body>
+<main>
+	<h1>Exchange rates</h1>
+	<p>1 EUR = 24.35 CZK = 1.08 USD</p>
+</main>
+</body>
+</html>
+
+--- ExchangeRates constructor calls so far: 1
+

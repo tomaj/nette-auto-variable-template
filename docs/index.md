@@ -114,7 +114,7 @@ The layout and every page template use them, and the presenter sets only `$title
 <LinkCards :items="[
   { title: 'Getting started', text: 'Install the package, register it in config.neon and render the first page.', link: '/guide/getting-started' },
   { title: 'How it works', text: 'What happens when a template is created, and which value wins.', link: '/guide/how-it-works' },
-  { title: 'Examples', text: 'Seven runnable Nette apps and scripts, tested in CI.', link: '/examples/' },
+  { title: 'Examples', text: 'Eight runnable Nette apps and scripts, tested in CI.', link: '/examples/' },
   { title: 'API reference', text: 'The constructor, createTemplate(), registerVariable(), getVariables() and onCreate.', link: '/api/reference' },
   { title: 'FAQ', text: 'Autowiring errors, Nette\'s own variables, translators, caching and more.', link: '/faq' },
   { title: 'Upgrading to 4.0', text: 'PHP 8.4, the final class and the end of SmartObject.', link: '/upgrade' },

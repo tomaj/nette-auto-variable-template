@@ -33,6 +33,10 @@ Add an `onCreate` handler that calls `$template->setTranslator($translator)` (a 
 
 No. A service is created once, when the factory service is created, and the same instance is assigned to every template. Assigning a variable is a property write per variable per template, which is negligible next to rendering.
 
+## Does registering a service slow down every request?
+
+Only by the cost of creating the service. A service registered with `@...` is created with the template factory, on every request that renders a template, even when no template prints it. That is free for a light service. For one with an expensive constructor, mark it `lazy: true` (PHP 8.4, nette/di 3.2.4+): the template gets a lazy ghost and the constructor runs only when a template first uses it. See [Expensive services](/guide/configuration#expensive-services-lazy-true) and the [lazy service example](/examples/lazy-service).
+
 ## Is the value computed again for every template?
 
 Registered values are fixed: a literal, a parameter or the result of `@service::method()` is evaluated once. For a value that must be computed per template, use `onCreate`; for a value that changes during the request, register the service and call its method in the template (`{$cart->count()}`).

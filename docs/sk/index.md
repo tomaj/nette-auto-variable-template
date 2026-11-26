@@ -114,7 +114,7 @@ Layout aj každá šablóna stránky ich používajú a presenter nastavuje len 
 <LinkCards :items="[
   { title: 'Začíname', text: 'Nainštalujte balík, zaregistrujte ho v config.neon a vykreslite prvú stránku.', link: '/sk/guide/getting-started' },
   { title: 'Ako to funguje', text: 'Čo sa deje pri vytváraní šablóny a ktorá hodnota vyhrá.', link: '/sk/guide/how-it-works' },
-  { title: 'Príklady', text: 'Sedem spustiteľných Nette aplikácií a skriptov, testovaných v CI.', link: '/sk/examples/' },
+  { title: 'Príklady', text: 'Osem spustiteľných Nette aplikácií a skriptov, testovaných v CI.', link: '/sk/examples/' },
   { title: 'Referencia API', text: 'Konštruktor, createTemplate(), registerVariable(), getVariables() a onCreate.', link: '/sk/api/reference' },
   { title: 'Časté otázky', text: 'Chyby autowiringu, vlastné premenné Nette, translatory, cache a ďalšie.', link: '/sk/faq' },
   { title: 'Prechod na 4.0', text: 'PHP 8.4, final trieda a koniec SmartObject.', link: '/sk/upgrade' },

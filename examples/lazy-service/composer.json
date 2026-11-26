@@ -1,0 +1,35 @@
+{
+    "name": "tomaj/nette-auto-variable-template-example-lazy-service",
+    "description": "A registered service marked lazy: true is constructed only when a template uses it",
+    "type": "project",
+    "license": "MIT",
+    "require": {
+        "php": "^8.4",
+        "latte/latte": "^3.0",
+        "nette/bootstrap": "^3.2",
+        "nette/di": "^3.2.4",
+        "tomaj/nette-auto-variable-template": "dev-master"
+    },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../..",
+            "options": {
+                "symlink": true,
+                "versions": {
+                    "tomaj/nette-auto-variable-template": "dev-master"
+                }
+            }
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    }
+}

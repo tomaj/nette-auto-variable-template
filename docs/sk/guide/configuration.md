@@ -79,6 +79,32 @@ Pravidlá, ktoré vyplývajú z kódu (`registerVariable()` ukladá hodnotu do p
 - **Dostanú ich len neskôr vytvorené šablóny.** Registrácia premennej nič nezmení na šablónach, ktoré už existujú.
 - **Názvy sa nekontrolujú.** Ako názov funguje akýkoľvek reťazec, ale používajte platný názov PHP premennej, inak ju Latte nevypíše ako `{$name}`.
 
+## Drahé služby: `lazy: true` {#expensive-services-lazy-true}
+
+Služba zaregistrovaná cez `@...` sa vytvorí spolu s továrňou šablón, teda pri každej požiadavke, ktorá vykresľuje šablónu, bez ohľadu na to, či niektorá šablóna premennú vypíše. Pri službe s drahým konštruktorom (dopyt do databázy, vzdialená konfigurácia, klient CMS) sa táto cena platí na každej stránke, aj pri AJAX snippetoch a chybových stránkach.
+
+S PHP 8.4 a nette/di 3.2.4 alebo novším označte službu `lazy: true`. Nette DI potom vytvorí [lazy ghost](https://www.php.net/manual/en/language.oop5.lazy-objects.php): objekt správnej triedy, ktorého konštruktor sa spustí až vtedy, keď niečo prvýkrát prečíta jeho vlastnosť alebo zavolá jeho metódu. Zaregistrovaná premenná je tento neinicializovaný objekt, takže šablóna, ktorá ho nikdy nepoužije, zaňho nikdy nezaplatí. V tomto balíku ani v šablónach sa nič nemení:
+
+```neon
+services:
+	templateFactory:
+		factory: Tomaj\Latte\AutoVariableTemplateFactory(@latte.templateFactory)
+		setup:
+			- registerVariable('rates', @App\Model\ExchangeRates)
+
+	exchangeRates:
+		create: App\Model\ExchangeRates(%tempDir%/rates.cache)
+		lazy: true
+```
+
+`di: lazy: true` v konfigurácii urobí lenivou každú službu, ktorá lenivá byť môže. Keď Nette DI službu lenivou urobiť nevie, vytvorí ju hneď, bez chyby:
+
+- keď službu vytvára továrenská metóda alebo továrenská služba (`create: @factory::create()`), pretože ghost potrebuje triedu, ktorú vytvorí;
+- keď je trieda vstavanou triedou PHP alebo z nej dedí (napríklad `ArrayObject`, `PDO`);
+- keď služba nemá argumenty konštruktora ani riadky `setup`: nie je čo odložiť.
+
+Odovzdanie objektu do `registerVariable()` a jeho priradenie do šablóny ho neinicializuje. Inicializuje ho až prvé volanie metódy alebo čítanie vlastnosti v šablóne, raz za požiadavku, ako v [príklade s lenivou službou](/sk/examples/lazy-service). Kód, ktorý objekt len kontroluje, napríklad `instanceof` alebo `get_class()`, ho tiež neinicializuje.
+
 ## Spustenie kódu pre každú šablónu {#running-code-for-every-template}
 
 `$onCreate` je verejné pole callbackov; jeden pridáte riadkom v sekcii `setup`. Callback môže byť metóda služby, statická metóda alebo akýkoľvek PHP callable, ktorý Nette DI dokáže zapísať:
