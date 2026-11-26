@@ -2,7 +2,7 @@
     "name": "tomaj/nette-auto-variable-template-example-testing",
     "description": "PHPUnit tests that check the registered variables of an application",
     "type": "project",
-    "license": "LGPL-2.0-or-later",
+    "license": "MIT",
     "require": {
         "php": "^8.4",
         "latte/latte": "^3.0",

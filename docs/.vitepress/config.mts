@@ -185,7 +185,7 @@ export default defineConfig({
         langMenuLabel: 'Zmeniť jazyk',
         skipToContentLabel: 'Preskočiť na obsah',
         footer: {
-          message: 'Vydané pod licenciou LGPL-2.0-or-later.',
+          message: 'Vydané pod licenciou MIT.',
           copyright: 'Copyright © 2015-2026 Tomas Majer',
         },
       },
@@ -246,7 +246,7 @@ export default defineConfig({
     },
 
     footer: {
-      message: 'Released under the LGPL-2.0-or-later license.',
+      message: 'Released under the MIT license.',
       copyright: 'Copyright © 2015-2026 Tomas Majer',
     },
   },

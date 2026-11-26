@@ -1,7 +1,7 @@
 {
     "name": "tomaj/nette-auto-variable-template",
     "description": "Nette template factory that assigns registered variables to every Latte template.",
-    "license": "LGPL-2.0-or-later",
+    "license": "MIT",
     "type": "library",
     "keywords": [
         "nette",

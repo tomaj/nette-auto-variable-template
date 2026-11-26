@@ -2,7 +2,7 @@
     "name": "tomaj/nette-auto-variable-template-example-hello-world",
     "description": "Registered variables in a presenter and its layout",
     "type": "project",
-    "license": "LGPL-2.0-or-later",
+    "license": "MIT",
     "require": {
         "php": "^8.4",
         "latte/latte": "^3.0",

@@ -56,3 +56,7 @@ npm run check:svg   # check every SVG in public/
 ## Vydania {#releases}
 
 Správcovia vydávajú nové verzie pushnutím tagu s verziou, ako popisuje [RELEASING.md](https://github.com/tomaj/nette-auto-variable-template/blob/master/RELEASING.md).
+
+## Licencia {#license}
+
+Balík je vydaný pod [licenciou MIT](https://github.com/tomaj/nette-auto-variable-template/blob/master/LICENSE) (verzie do 3.x pod `LGPL-2.0-or-later`). Prispievaním súhlasíte, že vaše príspevky sú licencované pod ňou.

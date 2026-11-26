@@ -16,7 +16,7 @@
 [![PHPStan](https://img.shields.io/badge/PHPStan-level%20max-brightgreen.svg)](https://phpstan.org/)
 [![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/tomaj/nette-auto-variable-template/badge)](https://scorecard.dev/viewer/?uri=github.com/tomaj/nette-auto-variable-template)
 [![Documentation](https://img.shields.io/badge/docs-4.x-4f46e5.svg)](https://tomaj.github.io/nette-auto-variable-template/)
-[![License](https://img.shields.io/packagist/l/tomaj/nette-auto-variable-template.svg)](https://packagist.org/packages/tomaj/nette-auto-variable-template)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![PHP Version](https://img.shields.io/packagist/dependency-v/tomaj/nette-auto-variable-template/php.svg)](https://packagist.org/packages/tomaj/nette-auto-variable-template)
 
 ## What is Nette Auto Variable Template?
@@ -72,4 +72,4 @@ Registered variables reach every template, so never register secrets. Report vul
 
 ## License
 
-nette-auto-variable-template is licensed under the GNU Lesser General Public License, version 2.0 or later (`LGPL-2.0-or-later`, as declared in `composer.json`).
+The MIT License (MIT). See [LICENSE](LICENSE). Versions up to 3.x were released under `LGPL-2.0-or-later`.

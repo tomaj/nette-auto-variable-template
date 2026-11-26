@@ -5,6 +5,7 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 ## [Unreleased][unreleased]
 
 ### Changed
+- **BREAKING CHANGE**: the licence changes from `LGPL-2.0-or-later` to MIT, like the other packages of the author. `composer.json` declares `"license": "MIT"` and the package ships a `LICENSE` file. Versions up to 3.x stay under `LGPL-2.0-or-later`. ([#15](https://github.com/tomaj/nette-auto-variable-template/issues/15))
 - **BREAKING CHANGE**: requires PHP 8.4 or newer (`"php": "^8.4"`, was `>= 8.1.0`). Upgrade PHP before updating the package, or stay on 3.x. ([#7](https://github.com/tomaj/nette-auto-variable-template/issues/7))
 - **BREAKING CHANGE**: `AutoVariableTemplateFactory` is `final`. Instead of extending it, configure it (`registerVariable()`, `onCreate`) or decorate it with your own `Nette\Application\UI\TemplateFactory`; see [UPGRADE-4.0.md](https://github.com/tomaj/nette-auto-variable-template/blob/master/UPGRADE-4.0.md). ([#8](https://github.com/tomaj/nette-auto-variable-template/issues/8))
 - **BREAKING CHANGE**: the class no longer uses `Nette\SmartObject`. `onCreate` is a typed `public array $onCreate` that `createTemplate()` calls in a loop; `$factory->onCreate[] = ...` and the `'$onCreate[]'` setup in `config.neon` work as before, but the magic `$factory->onCreate($template)` call is gone and reading or writing an undeclared property no longer throws `Nette\MemberAccessException`. ([#8](https://github.com/tomaj/nette-auto-variable-template/issues/8))
@@ -23,9 +24,6 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 - Documentation site at presentation level: own logo, favicons and social card, hero illustration and icons, guide pages (how it works, configuration, presenters and components, `onCreate`, custom template classes, testing, security), FAQ, upgrade page, and seven runnable examples in `examples/` (presenter and layout, components, `onCreate`, precedence, typed templates, without DI, PHPUnit) whose output the new `Examples` workflow compares with `expected-output.txt` on every pull request. ([#19](https://github.com/tomaj/nette-auto-variable-template/issues/19))
 - Slovak translation of the documentation site ([#21](https://github.com/tomaj/nette-auto-variable-template/issues/21))
 - `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, `SECURITY.md` (supported versions, private vulnerability reporting, what not to register), `RELEASING.md`, `UPGRADE-4.0.md`, issue and pull request templates. ([#13](https://github.com/tomaj/nette-auto-variable-template/issues/13))
-
-### Fixed
-- README no longer links a `LICENSE` file that does not exist; it states the licence declared in `composer.json`. ([#13](https://github.com/tomaj/nette-auto-variable-template/issues/13), [#15](https://github.com/tomaj/nette-auto-variable-template/issues/15))
 
 ## [3.0.0] - 2025-12-05
 

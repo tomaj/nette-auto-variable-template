@@ -2,7 +2,7 @@
     "name": "tomaj/nette-auto-variable-template-example-precedence",
     "description": "Which value wins when a variable is set in several places",
     "type": "project",
-    "license": "LGPL-2.0-or-later",
+    "license": "MIT",
     "require": {
         "php": "^8.4",
         "latte/latte": "^3.0",

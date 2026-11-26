@@ -2,7 +2,7 @@
     "name": "tomaj/nette-auto-variable-template-example-on-create",
     "description": "An onCreate handler adds a filter and a per-template variable",
     "type": "project",
-    "license": "LGPL-2.0-or-later",
+    "license": "MIT",
     "require": {
         "php": "^8.4",
         "latte/latte": "^3.0",
