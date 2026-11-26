@@ -13,7 +13,7 @@ description: What happens when a Nette template is created through AutoVariableT
 public function createTemplate(?Control $control = null, ?string $class = null): Template
 {
     $template = $this->innerTemplateFactory->createTemplate($control, $class);
-    $this->assignVariables($template);   // $template->$name = $value for every registered variable
+    $this->assignVariables($template);   // $template->$name = $value for every registered variable the template class can take
     foreach ($this->onCreate as $handler) {
         $handler($template);
     }
@@ -28,7 +28,7 @@ public function createTemplate(?Control $control = null, ?string $class = null):
 
 1. **A presenter or component needs its template.** `$this->template` is created on first use by `Control::createTemplate()`, which calls the autowired template factory with the control and the template class (`HomeTemplate` if such a class exists, see [Custom template classes](/guide/template-classes)).
 2. **Nette's factory creates it.** `Nette\Bridges\ApplicationLatte\TemplateFactory` creates the Latte engine and the template object, sets `$user`, `$baseUrl`, `$basePath`, `$flashes`, `$control` and `$presenter` when the template class declares them, and calls its own `onCreate` handlers (the ones you add to `latte.templateFactory`).
-3. **The registered variables are assigned**, in the order they were registered. A registered name that Nette already set in step 2 replaces Nette's value.
+3. **The registered variables are assigned**, in the order they were registered. A registered name that Nette already set in step 2 replaces Nette's value. A typed template class gets only the variables it declares ([Custom template classes](/guide/template-classes)).
 4. **The `onCreate` handlers of `AutoVariableTemplateFactory` run**, in the order they were added. They see the registered variables and can change them or add new ones, filters and functions.
 5. **The presenter or component sets its own variables** in `action*()`, `render*()` or its `render()` method. The template already exists at that point, so these assignments replace anything from the steps above.
 

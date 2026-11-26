@@ -21,7 +21,7 @@ Skutočná konfigurácia aplikácie spustená v PHPUnit. Tri testy overujú zapo
 
 <<< @/../examples/testing/phpunit.xml{xml}
 
-`failOnDeprecation` spôsobí, že sada testov zlyhá, keď trieda šablóny nedeklaruje zaregistrovanú premennú ([Vlastné triedy šablón](/sk/guide/template-classes)).
+`failOnDeprecation` spôsobí, že sada testov zlyhá pri akejkoľvek deprecation v PHP, napríklad keď handler `onCreate` priradí premennú, ktorú trieda šablóny nedeklaruje ([Vlastné triedy šablón](/sk/guide/template-classes)).
 
 ## Výstup {#output}
 

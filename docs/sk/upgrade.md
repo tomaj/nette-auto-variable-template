@@ -105,4 +105,19 @@ foreach ($factory->onCreate as $handler) {
 
 `nette/utils` už nie je priama závislosť. Ak vaša aplikácia sama používa `Nette\Utils`, pridajte `nette/utils` do vlastného `composer.json` (nette/application ho stále nainštaluje).
 
+## Typované triedy šablón dostanú len premenné, ktoré deklarujú {#typed-template-classes-get-only-the-variables-they-declare}
+
+Nejde o nekompatibilnú zmenu pre kód bez deprecation, ale správanie je viditeľné. Verzia 3.x priraďovala každú zaregistrovanú premennú do každej šablóny; pri [typovo bezpečnej triede šablóny](/sk/guide/template-classes), ktorá premennú nedeklaruje, PHP hlásilo "Creation of dynamic property ... is deprecated" a hodnota sa aj tak priradila. Verzia 4.0 takú premennú pre danú triedu preskočí, bez deprecation. Triedy, ktoré vlastnosť deklarujú, majú `#[\AllowDynamicProperties]` (na triede alebo rodičovi, ako `DefaultTemplate` z Nette) alebo `__set()`, ju dostanú ako predtým.
+
+Ak šablóna takej triedy číta zaregistrovanú premennú, ktorú nedeklaruje, deklarujte ju:
+
+```php
+use Nette\Bridges\ApplicationLatte\Template;
+
+final class HomeTemplate extends Template
+{
+    public string $appName;
+}
+```
+
 Úplný zoznam zmien je v [zozname zmien](/sk/changelog).

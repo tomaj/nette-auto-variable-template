@@ -8,8 +8,11 @@ use Nette\Application\UI\Control;
 use Nette\Application\UI\Template;
 use PHPUnit\Framework\TestCase;
 use Tomaj\Latte\AutoVariableTemplateFactory;
+use Tomaj\Latte\Test\Fixtures\InheritedDynamicTemplate;
+use Tomaj\Latte\Test\Fixtures\MagicSetTemplate;
 use Tomaj\Latte\Test\Fixtures\RecordingTemplateFactory;
 use Tomaj\Latte\Test\Fixtures\StubTemplate;
+use Tomaj\Latte\Test\Fixtures\TypedTemplate;
 
 final class AutoVariableTemplateFactoryTest extends TestCase
 {
@@ -182,5 +185,102 @@ final class AutoVariableTemplateFactoryTest extends TestCase
         self::assertSame([], $factory->onCreate);
         self::assertSame([], get_object_vars($factory->createTemplate()));
         self::assertCount(1, $inner->calls);
+    }
+
+    public function testClassWithItsOwnAllowDynamicPropertiesAttributeGetsEveryVariable(): void
+    {
+        $factory = $this->factoryWithVariables();
+
+        $template = $this->createWithoutDeprecations($factory, StubTemplate::class);
+
+        self::assertInstanceOf(StubTemplate::class, $template);
+        self::assertSame(['limit' => 10, 'appName' => 'My Application'], get_object_vars($template));
+    }
+
+    public function testClassInheritingAllowDynamicPropertiesGetsEveryVariable(): void
+    {
+        $factory = $this->factoryWithVariables();
+
+        $template = $this->createWithoutDeprecations($factory, InheritedDynamicTemplate::class);
+
+        self::assertInstanceOf(InheritedDynamicTemplate::class, $template);
+        self::assertSame(['limit' => 10, 'appName' => 'My Application'], get_object_vars($template));
+    }
+
+    public function testClassWithMagicSetGetsEveryVariable(): void
+    {
+        $factory = $this->factoryWithVariables();
+
+        $template = $this->createWithoutDeprecations($factory, MagicSetTemplate::class);
+
+        self::assertInstanceOf(MagicSetTemplate::class, $template);
+        self::assertSame(['limit' => 10, 'appName' => 'My Application'], $template->variables);
+    }
+
+    public function testTypedClassGetsOnlyTheVariablesItDeclaresWithoutDeprecation(): void
+    {
+        $factory = $this->factoryWithVariables();
+
+        $template = $this->createWithoutDeprecations($factory, TypedTemplate::class);
+
+        self::assertInstanceOf(TypedTemplate::class, $template);
+        self::assertSame(['appName' => 'My Application'], get_object_vars($template));
+    }
+
+    public function testTheCheckIsPerTemplateClass(): void
+    {
+        $factory = $this->factoryWithVariables();
+
+        $typed = $this->createWithoutDeprecations($factory, TypedTemplate::class);
+        $stub = $this->createWithoutDeprecations($factory, StubTemplate::class);
+        $typedAgain = $this->createWithoutDeprecations($factory, TypedTemplate::class);
+        $stubAgain = $this->createWithoutDeprecations($factory, StubTemplate::class);
+
+        self::assertSame(['appName' => 'My Application'], get_object_vars($typed));
+        self::assertSame(['appName' => 'My Application'], get_object_vars($typedAgain));
+        self::assertSame(['limit' => 10, 'appName' => 'My Application'], get_object_vars($stub));
+        self::assertSame(['limit' => 10, 'appName' => 'My Application'], get_object_vars($stubAgain));
+    }
+
+    public function testDeclaredPropertyOfAnIncompatibleTypeThrowsTypeError(): void
+    {
+        $factory = new AutoVariableTemplateFactory(new RecordingTemplateFactory());
+        $factory->registerVariable('appName', 42);
+
+        try {
+            $factory->createTemplate(null, TypedTemplate::class);
+            self::fail('TypeError expected');
+        } catch (\TypeError $e) {
+            self::assertSame('Cannot assign int to property ' . TypedTemplate::class . '::$appName of type string', $e->getMessage());
+        }
+    }
+
+    private function factoryWithVariables(): AutoVariableTemplateFactory
+    {
+        $factory = new AutoVariableTemplateFactory(new RecordingTemplateFactory());
+        $factory->registerVariable('limit', 10); // TypedTemplate does not declare it; the declared appName after it is still assigned
+        $factory->registerVariable('appName', 'My Application');
+
+        return $factory;
+    }
+
+    /**
+     * @param class-string<Template> $class
+     */
+    private function createWithoutDeprecations(AutoVariableTemplateFactory $factory, string $class): Template
+    {
+        $errors = [];
+        set_error_handler(static function (int $level, string $message) use (&$errors): bool {
+            $errors[] = $message;
+            return true;
+        });
+        try {
+            $template = $factory->createTemplate(null, $class);
+        } finally {
+            restore_error_handler();
+        }
+        self::assertSame([], $errors);
+
+        return $template;
     }
 }

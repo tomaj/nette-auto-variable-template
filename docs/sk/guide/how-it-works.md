@@ -13,7 +13,7 @@ description: Čo sa stane, keď sa Nette šablóna vytvára cez AutoVariableTemp
 public function createTemplate(?Control $control = null, ?string $class = null): Template
 {
     $template = $this->innerTemplateFactory->createTemplate($control, $class);
-    $this->assignVariables($template);   // $template->$name = $value for every registered variable
+    $this->assignVariables($template);   // $template->$name = $value for every registered variable the template class can take
     foreach ($this->onCreate as $handler) {
         $handler($template);
     }
@@ -28,7 +28,7 @@ public function createTemplate(?Control $control = null, ?string $class = null):
 
 1. **Presenter alebo komponent potrebuje šablónu.** `$this->template` sa vytvorí pri prvom použití cez `Control::createTemplate()`, ktorá zavolá autowirovanú továreň na šablóny s komponentom a triedou šablóny (`HomeTemplate`, ak taká trieda existuje, pozrite [Vlastné triedy šablón](/sk/guide/template-classes)).
 2. **Šablónu vytvorí továreň z Nette.** `Nette\Bridges\ApplicationLatte\TemplateFactory` vytvorí Latte engine a objekt šablóny, nastaví `$user`, `$baseUrl`, `$basePath`, `$flashes`, `$control` a `$presenter`, ak ich trieda šablóny deklaruje, a zavolá vlastné handlery `onCreate` (tie, ktoré pridávate do `latte.templateFactory`).
-3. **Priradia sa zaregistrované premenné** v poradí, v akom boli zaregistrované. Zaregistrovaný názov, ktorý Nette už nastavilo v kroku 2, nahradí hodnotu z Nette.
+3. **Priradia sa zaregistrované premenné** v poradí, v akom boli zaregistrované. Zaregistrovaný názov, ktorý Nette už nastavilo v kroku 2, nahradí hodnotu z Nette. Typovaná trieda šablóny dostane len premenné, ktoré deklaruje ([Vlastné triedy šablón](/sk/guide/template-classes)).
 4. **Spustia sa handlery `onCreate` triedy `AutoVariableTemplateFactory`** v poradí, v akom boli pridané. Vidia zaregistrované premenné a môžu ich meniť alebo pridávať nové premenné, filtre a funkcie.
 5. **Presenter alebo komponent si nastaví vlastné premenné** v `action*()`, `render*()` alebo vo svojej metóde `render()`. Šablóna už v tej chvíli existuje, takže tieto priradenia prepíšu čokoľvek z predchádzajúcich krokov.
 

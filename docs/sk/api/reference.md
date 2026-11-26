@@ -60,7 +60,7 @@ Vytvorí šablónu:
 - `TypeError`, keď zaregistrovaná hodnota nezodpovedá typovanej vlastnosti triedy šablóny (napríklad `null` pre `string $basePath`, pozrite [Vlastné triedy šablón](/sk/guide/template-classes#types-must-match));
 - akúkoľvek výnimku vyhodenú handlerom `onCreate`; handlery za ním sa nespustia.
 
-Priradenie zaregistrovanej premennej do triedy šablóny bez `#[\AllowDynamicProperties]`, ktorá ju nedeklaruje, vyvolá PHP hlásenie „Creation of dynamic property is deprecated“.
+Zaregistrovaná premenná sa priradí len vtedy, keď trieda šablóny vlastnosť deklaruje, povoľuje dynamické vlastnosti (`#[\AllowDynamicProperties]` na triede alebo rodičovi) alebo má `__set()`; inak sa pre túto šablónu preskočí, bez deprecation. Pozrite [Vlastné triedy šablón](/sk/guide/template-classes).
 
 Presentery a komponenty ju volajú cez `Control::createTemplate()`; sami ju voláte zriedka.
 

@@ -39,7 +39,7 @@ Registered values are fixed: a literal, a parameter or the result of `@service::
 
 ## Does it work with typed template classes and `{templateType}`?
 
-Yes, if the class declares the registered variables as properties. Otherwise PHP reports "Creation of dynamic property ... is deprecated" for each of them. See [Custom template classes](/guide/template-classes).
+Yes. The class gets the registered variables it declares as properties; the ones it does not declare are skipped for it, without a deprecation (unless it has `#[\AllowDynamicProperties]`, then it gets all of them). See [Custom template classes](/guide/template-classes).
 
 ## Does it work without Nette DI, or outside presenters?
 

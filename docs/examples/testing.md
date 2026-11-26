@@ -21,7 +21,7 @@ The application's real configuration, booted in PHPUnit. The three tests check t
 
 <<< @/../examples/testing/phpunit.xml{xml}
 
-`failOnDeprecation` makes the suite fail when a template class does not declare a registered variable ([Custom template classes](/guide/template-classes)).
+`failOnDeprecation` makes the suite fail on any PHP deprecation, for example when an `onCreate` handler assigns a variable the template class does not declare ([Custom template classes](/guide/template-classes)).
 
 ## Output
 

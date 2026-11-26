@@ -60,7 +60,7 @@ Creates a template:
 - a `TypeError` when a registered value does not fit a typed property of the template class (for example `null` for `string $basePath`, see [Custom template classes](/guide/template-classes#types-must-match));
 - any exception thrown by an `onCreate` handler; the handlers after it do not run.
 
-Assigning a registered variable to a template class without `#[\AllowDynamicProperties]` that does not declare it raises PHP's "Creation of dynamic property is deprecated" notice.
+A registered variable is assigned only when the template class declares the property, allows dynamic properties (`#[\AllowDynamicProperties]` on the class or a parent) or has `__set()`; otherwise it is skipped for that template, without a deprecation. See [Custom template classes](/guide/template-classes).
 
 Presenters and components call it through `Control::createTemplate()`; you rarely call it yourself.
 
