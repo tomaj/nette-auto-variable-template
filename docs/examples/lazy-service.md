@@ -7,7 +7,7 @@ description: "A registered ExchangeRates service marked lazy: true. Its construc
 
 <ExampleSource name="lazy-service" />
 
-Every template gets `$rates`, an `ExchangeRates` service with a constructor that stands for an expensive one: it writes a line to `temp/exchange-rates.log` each time it runs. The service is marked `lazy: true` (PHP 8.4, nette/di 3.2.4+), so the template factory registers a lazy ghost and the constructor runs only when a template first calls a method on it. `run.php` prints how many times the constructor has run after each page.
+Every template gets `$rates`, an `ExchangeRates` service with a constructor that stands for an expensive one: it writes a line to `temp/exchange-rates.log` each time it runs. The service is marked `lazy: true` (PHP 8.4, nette/di 3.2.4+), so the template factory registers a lazy ghost and the constructor runs only when a template first calls a method that reads the object's state. `run.php` prints how many times the constructor has run after each page.
 
 ## Configuration
 

@@ -83,7 +83,7 @@ Pravidlá, ktoré vyplývajú z kódu (`registerVariable()` ukladá hodnotu do p
 
 Služba zaregistrovaná cez `@...` sa vytvorí spolu s továrňou šablón, teda pri každej požiadavke, ktorá vykresľuje šablónu, bez ohľadu na to, či niektorá šablóna premennú vypíše. Pri službe s drahým konštruktorom (dopyt do databázy, vzdialená konfigurácia, klient CMS) sa táto cena platí na každej stránke, aj pri AJAX snippetoch a chybových stránkach.
 
-S PHP 8.4 a nette/di 3.2.4 alebo novším označte službu `lazy: true`. Nette DI potom vytvorí [lazy ghost](https://www.php.net/manual/en/language.oop5.lazy-objects.php): objekt správnej triedy, ktorého konštruktor sa spustí až vtedy, keď niečo prvýkrát prečíta jeho vlastnosť alebo zavolá jeho metódu. Zaregistrovaná premenná je tento neinicializovaný objekt, takže šablóna, ktorá ho nikdy nepoužije, zaňho nikdy nezaplatí. V tomto balíku ani v šablónach sa nič nemení:
+S PHP 8.4 a nette/di 3.2.4 alebo novším označte službu `lazy: true`. Nette DI potom vytvorí [lazy ghost](https://www.php.net/manual/en/language.oop5.lazy-objects.php): objekt správnej triedy, ktorého konštruktor sa spustí až vtedy, keď niečo prvýkrát prečíta alebo zapíše niektorú jeho vlastnosť, napríklad v metóde, ktorá pracuje so stavom objektu. Volanie metódy, ktorá žiadnu vlastnosť nepoužije, ho neinicializuje. Zaregistrovaná premenná je tento neinicializovaný objekt, takže šablóna, ktorá ho nikdy nepoužije, zaňho nikdy nezaplatí. V tomto balíku ani v šablónach sa nič nemení:
 
 ```neon
 services:
@@ -103,7 +103,7 @@ services:
 - keď je trieda vstavanou triedou PHP alebo z nej dedí (napríklad `ArrayObject`, `PDO`);
 - keď služba nemá argumenty konštruktora ani riadky `setup`: nie je čo odložiť.
 
-Odovzdanie objektu do `registerVariable()` a jeho priradenie do šablóny ho neinicializuje. Inicializuje ho až prvé volanie metódy alebo čítanie vlastnosti v šablóne, raz za požiadavku, ako v [príklade s lenivou službou](/sk/examples/lazy-service). Kód, ktorý objekt len kontroluje, napríklad `instanceof` alebo `get_class()`, ho tiež neinicializuje.
+Odovzdanie objektu do `registerVariable()` a jeho priradenie do šablóny ho neinicializuje. Inicializuje ho až prvý prístup k jeho stavu, typicky prvé volanie metódy, ktorá číta vlastnosť, raz za požiadavku, ako v [príklade s lenivou službou](/sk/examples/lazy-service). Kód, ktorý objekt len kontroluje, napríklad `instanceof` alebo `get_class()`, ho tiež neinicializuje.
 
 ## Spustenie kódu pre každú šablónu {#running-code-for-every-template}
 

@@ -7,7 +7,7 @@ description: "Zaregistrovaná služba ExchangeRates označená lazy: true. Jej k
 
 <ExampleSource name="lazy-service" />
 
-Každá šablóna dostane `$rates`, službu `ExchangeRates`, ktorej konštruktor zastupuje drahý konštruktor: pri každom spustení zapíše riadok do `temp/exchange-rates.log`. Služba je označená `lazy: true` (PHP 8.4, nette/di 3.2.4+), takže továreň šablón zaregistruje lazy ghost a konštruktor sa spustí až vtedy, keď šablóna prvýkrát zavolá jeho metódu. `run.php` po každej stránke vypíše, koľkokrát sa konštruktor zatiaľ spustil.
+Každá šablóna dostane `$rates`, službu `ExchangeRates`, ktorej konštruktor zastupuje drahý konštruktor: pri každom spustení zapíše riadok do `temp/exchange-rates.log`. Služba je označená `lazy: true` (PHP 8.4, nette/di 3.2.4+), takže továreň šablón zaregistruje lazy ghost a konštruktor sa spustí až vtedy, keď šablóna prvýkrát zavolá metódu, ktorá číta stav objektu. `run.php` po každej stránke vypíše, koľkokrát sa konštruktor zatiaľ spustil.
 
 ## Konfigurácia {#configuration}
 
