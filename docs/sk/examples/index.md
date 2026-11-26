@@ -1,11 +1,11 @@
 ---
 title: Príklady
-description: Sedem spustiteľných príkladov nette-auto-variable-template testovaných v CI - presenter s layoutom, komponenty, onCreate, priorita hodnôt, typované šablóny, čisté PHP bez DI a PHPUnit testy.
+description: Osem spustiteľných príkladov nette-auto-variable-template testovaných v CI - presenter s layoutom, komponenty, onCreate, priorita hodnôt, typované šablóny, čisté PHP bez DI, PHPUnit testy a lenivá služba.
 ---
 
 # Príklady {#examples}
 
-Každý príklad je malý projekt v [`examples/`](https://github.com/tomaj/nette-auto-variable-template/tree/master/examples) s vlastným `composer.json`, súborom `run.php` a `expected-output.txt`. Päť z nich sú Nette aplikácie s front controllerom `www/index.php`; ich `run.php` spustí aplikáciu vo vstavanom webovom serveri PHP (`php -S`), zavolá niekoľko URL a vypíše HTML, pričom každá chyba alebo deprecation z PHP sa zobrazí priamo na stránke. `without-di` je obyčajný skript a `testing` spúšťa PHPUnit. [Workflow Examples](https://github.com/tomaj/nette-auto-variable-template/actions/workflows/examples.yml) spustí každý `run.php` proti kódu každého pull requestu a zlyhá, keď sa výstup od `expected-output.txt` líši čo i len v jednom znaku. Stránky nižšie súbory priamo načítavajú, takže kód aj výstup, ktorý čítate, sú tie otestované.
+Každý príklad je malý projekt v [`examples/`](https://github.com/tomaj/nette-auto-variable-template/tree/master/examples) s vlastným `composer.json`, súborom `run.php` a `expected-output.txt`. Šesť z nich sú Nette aplikácie s front controllerom `www/index.php`; ich `run.php` spustí aplikáciu vo vstavanom webovom serveri PHP (`php -S`), zavolá niekoľko URL a vypíše HTML, pričom každá chyba alebo deprecation z PHP sa zobrazí priamo na stránke. `without-di` je obyčajný skript a `testing` spúšťa PHPUnit. [Workflow Examples](https://github.com/tomaj/nette-auto-variable-template/actions/workflows/examples.yml) spustí každý `run.php` proti kódu každého pull requestu a zlyhá, keď sa výstup od `expected-output.txt` líši čo i len v jednom znaku. Stránky nižšie súbory priamo načítavajú, takže kód aj výstup, ktorý čítate, sú tie otestované.
 
 <LinkCards :items="[
   { title: 'Hello world', text: 'appName a služba s nastaveniami v presenteri, jeho layoute a dvoch stránkach.', link: '/sk/examples/hello-world' },
@@ -15,6 +15,7 @@ Každý príklad je malý projekt v [`examples/`](https://github.com/tomaj/nette
   { title: 'Typované šablóny', text: 'Zaregistrované premenné deklarované v triede šablóny a čo sa stane bez nej.', link: '/sk/examples/typed-template' },
   { title: 'Bez Nette DI', text: 'Továreň zapojená ručne v skripte: faktúra a e-mail.', link: '/sk/examples/without-di' },
   { title: 'Testovanie', text: 'PHPUnit testy pre kontajner, premenné a vykreslený presenter.', link: '/sk/examples/testing' },
+  { title: 'Lenivá služba', text: 'Služba označená lazy: true sa vytvorí len na stránke, ktorá ju použije.', link: '/sk/examples/lazy-service' },
 ]" />
 
 ## Spustenie príkladu {#running-an-example}

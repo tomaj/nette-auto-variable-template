@@ -33,6 +33,10 @@ Pridajte handler `onCreate`, ktorý zavolá `$template->setTranslator($translato
 
 Nie. Služba sa vytvorí raz, keď sa vytvorí služba továrne, a každej šablóne sa priradí tá istá inštancia. Priradenie premennej je jeden zápis vlastnosti na premennú a šablónu, čo je oproti vykresľovaniu zanedbateľné.
 
+## Spomaľuje registrácia služby každú požiadavku? {#does-registering-a-service-slow-down-every-request}
+
+Len o cenu vytvorenia služby. Služba zaregistrovaná cez `@...` sa vytvorí s továrňou šablón pri každej požiadavke, ktorá vykresľuje šablónu, aj keď ju žiadna šablóna nevypíše. Pri ľahkej službe je to zadarmo. Službu s drahým konštruktorom označte `lazy: true` (PHP 8.4, nette/di 3.2.4+): šablóna dostane lazy ghost a konštruktor sa spustí až vtedy, keď ju šablóna prvýkrát použije. Pozrite [Drahé služby](/sk/guide/configuration#expensive-services-lazy-true) a [príklad s lenivou službou](/sk/examples/lazy-service).
+
 ## Počíta sa hodnota pre každú šablónu znova? {#is-the-value-computed-again-for-every-template}
 
 Zaregistrované hodnoty sú pevné: literál, parameter aj výsledok `@service::method()` sa vyhodnotia raz. Pre hodnotu, ktorú treba počítať pre každú šablónu, použite `onCreate`; pre hodnotu, ktorá sa mení počas požiadavky, zaregistrujte službu a jej metódu volajte v šablóne (`{$cart->count()}`).

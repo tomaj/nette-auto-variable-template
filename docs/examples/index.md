@@ -1,11 +1,11 @@
 ---
 title: Examples
-description: Seven runnable examples of nette-auto-variable-template, tested in CI - a presenter with a layout, components, onCreate, precedence, typed templates, plain PHP without DI and PHPUnit tests.
+description: Eight runnable examples of nette-auto-variable-template, tested in CI - a presenter with a layout, components, onCreate, precedence, typed templates, plain PHP without DI, PHPUnit tests and a lazy service.
 ---
 
 # Examples
 
-Each example is a small project in [`examples/`](https://github.com/tomaj/nette-auto-variable-template/tree/master/examples) with its own `composer.json`, a `run.php` and an `expected-output.txt`. Five of them are Nette applications with a `www/index.php` front controller; their `run.php` starts the application in PHP's built-in web server (`php -S`), requests a few URLs and prints the HTML, with any PHP error or deprecation displayed in the page. `without-di` is a plain script and `testing` runs PHPUnit. The [Examples workflow](https://github.com/tomaj/nette-auto-variable-template/actions/workflows/examples.yml) runs every `run.php` against the code of each pull request and fails when the output differs from `expected-output.txt` by a single character. The pages below include the files directly, so the code and the output you read are the tested ones.
+Each example is a small project in [`examples/`](https://github.com/tomaj/nette-auto-variable-template/tree/master/examples) with its own `composer.json`, a `run.php` and an `expected-output.txt`. Six of them are Nette applications with a `www/index.php` front controller; their `run.php` starts the application in PHP's built-in web server (`php -S`), requests a few URLs and prints the HTML, with any PHP error or deprecation displayed in the page. `without-di` is a plain script and `testing` runs PHPUnit. The [Examples workflow](https://github.com/tomaj/nette-auto-variable-template/actions/workflows/examples.yml) runs every `run.php` against the code of each pull request and fails when the output differs from `expected-output.txt` by a single character. The pages below include the files directly, so the code and the output you read are the tested ones.
 
 <LinkCards :items="[
   { title: 'Hello world', text: 'appName and a settings service in a presenter, its layout and two pages.', link: '/examples/hello-world' },
@@ -15,6 +15,7 @@ Each example is a small project in [`examples/`](https://github.com/tomaj/nette-
   { title: 'Typed templates', text: 'Registered variables declared on a template class, and what happens without it.', link: '/examples/typed-template' },
   { title: 'Without Nette DI', text: 'The factory wired by hand in a script: an invoice and an e-mail.', link: '/examples/without-di' },
   { title: 'Testing', text: 'PHPUnit tests for the container, the variables and a rendered presenter.', link: '/examples/testing' },
+  { title: 'Lazy service', text: 'A service marked lazy: true is constructed only on the page that uses it.', link: '/examples/lazy-service' },
 ]" />
 
 ## Running an example

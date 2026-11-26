@@ -64,6 +64,7 @@ const sidebarEn = [
       { text: 'Typed templates', link: '/examples/typed-template' },
       { text: 'Without Nette DI', link: '/examples/without-di' },
       { text: 'Testing', link: '/examples/testing' },
+      { text: 'Lazy service', link: '/examples/lazy-service' },
     ],
   },
   {
@@ -103,6 +104,7 @@ const sidebarSk = [
       { text: 'Typované šablóny', link: '/sk/examples/typed-template' },
       { text: 'Bez Nette DI', link: '/sk/examples/without-di' },
       { text: 'Testovanie', link: '/sk/examples/testing' },
+      { text: 'Lenivá služba', link: '/sk/examples/lazy-service' },
     ],
   },
   {

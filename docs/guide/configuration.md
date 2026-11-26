@@ -79,6 +79,32 @@ Rules that follow from the code (`registerVariable()` stores the value in an arr
 - **Only templates created later get them.** Registering a variable changes nothing on templates that already exist.
 - **Names are not checked.** Any string works as a name, but use a valid PHP variable name, or Latte cannot print it as `{$name}`.
 
+## Expensive services: `lazy: true`
+
+A service registered with `@...` is created together with the template factory, so on every request that renders a template, whether or not a template prints the variable. For a service with an expensive constructor (a database query, remote configuration, a CMS client) that cost is paid on every page, including AJAX snippets and error pages.
+
+With PHP 8.4 and nette/di 3.2.4 or newer, mark the service `lazy: true`. Nette DI then creates a [lazy ghost](https://www.php.net/manual/en/language.oop5.lazy-objects.php): an object of the right class whose constructor runs only when something first reads or writes one of its properties, for example inside a method that uses the object's state. Calling a method that touches no property does not initialise it. The registered variable is that uninitialised object, so a template that never uses it never pays for it. Nothing changes in this package or in the templates:
+
+```neon
+services:
+	templateFactory:
+		factory: Tomaj\Latte\AutoVariableTemplateFactory(@latte.templateFactory)
+		setup:
+			- registerVariable('rates', @App\Model\ExchangeRates)
+
+	exchangeRates:
+		create: App\Model\ExchangeRates(%tempDir%/rates.cache)
+		lazy: true
+```
+
+`di: lazy: true` in the configuration makes every service that can be lazy lazy. Nette DI creates the service eagerly, without an error, when it cannot make it lazy:
+
+- when the service is created by a factory method or a factory service (`create: @factory::create()`), because a ghost needs a class to instantiate;
+- when the class is an internal PHP class or extends one (for example `ArrayObject`, `PDO`);
+- when the service has neither constructor arguments nor `setup` lines: there is nothing to defer.
+
+Passing the object to `registerVariable()` and assigning it to the template does not initialise it. The first access to its state does, typically the first call of a method that reads a property, once per request, as in the [lazy service example](/examples/lazy-service). Code that checks the object, such as `instanceof` or `get_class()`, does not initialise it either.
+
 ## Running code for every template
 
 `$onCreate` is a public array of callbacks; add one with a setup line. The callback can be a method of a service, a static method or any PHP callable Nette DI can express:

@@ -87,4 +87,4 @@ My Application 2026
 - [Konfigurácia](/sk/guide/configuration): všetky spôsoby, ako zaregistrovať premennú v `config.neon`
 - [Presentery a komponenty](/sk/guide/templates): layouty, šablóny komponentov a šablóny pre e-maily
 - [Spúšťanie kódu: onCreate](/sk/guide/on-create): filtre, funkcie a hodnoty počítané pre každú šablónu
-- [Príklady](/sk/examples/): sedem spustiteľných projektov
+- [Príklady](/sk/examples/): osem spustiteľných projektov

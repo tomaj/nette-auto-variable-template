@@ -1,0 +1,27 @@
+application:
+	mapping: App\Presenters\*Presenter
+	catchExceptions: false
+
+latte:
+	strictTypes: yes
+
+services:
+	latte.templateFactory:
+		autowired: no
+
+	templateFactory:
+		factory: Tomaj\Latte\AutoVariableTemplateFactory(@latte.templateFactory)
+		setup:
+			- registerVariable('appName', 'Acme Shop')
+			# every template gets $rates, but as a lazy ghost: no constructor has run yet
+			- registerVariable('rates', @App\Model\ExchangeRates)
+
+	# lazy: true (nette/di 3.2.4+, PHP 8.4): the constructor runs on the first use of the object
+	exchangeRates:
+		create: App\Model\ExchangeRates(%tempDir%/exchange-rates.log)
+		lazy: true
+
+	router:
+		create: Nette\Application\Routers\RouteList
+		setup:
+			- addRoute('<presenter=Home>[/<action=default>]')

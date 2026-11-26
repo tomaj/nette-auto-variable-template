@@ -87,4 +87,4 @@ My Application 2026
 - [Configuration](/guide/configuration): every way to register a variable in `config.neon`
 - [Presenters and components](/guide/templates): layouts, component templates and templates for e-mails
 - [Running code: onCreate](/guide/on-create): filters, functions and values computed per template
-- [Examples](/examples/): seven runnable projects
+- [Examples](/examples/): eight runnable projects
