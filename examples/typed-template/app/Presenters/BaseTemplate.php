@@ -10,7 +10,7 @@ use Nette\Bridges\ApplicationLatte\Template;
 
 /**
  * Declares the variables registered in config/common.neon, so every template class that extends it
- * accepts them (a class without #[AllowDynamicProperties] does not accept undeclared properties).
+ * gets them (a class without #[AllowDynamicProperties] gets only the registered variables it declares).
  */
 abstract class BaseTemplate extends Template
 {

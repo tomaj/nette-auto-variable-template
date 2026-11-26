@@ -7,6 +7,7 @@ namespace Tomaj\Latte\Test;
 use Nette\Application\UI\Presenter;
 use Nette\Application\UI\TemplateFactory;
 use Nette\Bridges\ApplicationDI\LatteExtension;
+use Nette\Bridges\ApplicationLatte\DefaultTemplate;
 use Nette\Bridges\ApplicationLatte\Template;
 use Nette\DI\Compiler;
 use Nette\DI\Container;
@@ -17,6 +18,7 @@ use Nette\Http\UrlScript;
 use PHPUnit\Framework\TestCase;
 use Tomaj\Latte\AutoVariableTemplateFactory;
 use Tomaj\Latte\Test\Fixtures\AppTemplate;
+use Tomaj\Latte\Test\Fixtures\PlainTemplate;
 use Tomaj\Latte\Test\Fixtures\Settings;
 use Tomaj\Latte\Test\Fixtures\TemplateListener;
 use Tomaj\Latte\Test\Fixtures\WidgetControl;
@@ -113,6 +115,35 @@ final class NetteIntegrationTest extends TestCase
         self::assertSame('My Application', $template->appName);
         self::assertSame($this->container->getByType(Settings::class), $template->settings);
         self::assertSame('listener', $template->createdBy);
+    }
+
+    public function testDefaultTemplateGetsTheVariables(): void
+    {
+        $template = $this->factory()->createTemplate(new WidgetControl());
+
+        self::assertInstanceOf(DefaultTemplate::class, $template);
+        self::assertSame('My Application', $template->appName);
+        self::assertSame($this->container->getByType(Settings::class), $template->settings);
+    }
+
+    public function testCustomTemplateClassWithoutTheDeclarationsSkipsTheVariables(): void
+    {
+        $factory = $this->factory();
+        $factory->onCreate = []; // the test listener sets $createdBy, which PlainTemplate does not declare
+        $errors = [];
+        set_error_handler(static function (int $level, string $message) use (&$errors): bool {
+            $errors[] = $message;
+            return true;
+        });
+        try {
+            $template = $factory->createTemplate(new WidgetControl(), PlainTemplate::class);
+        } finally {
+            restore_error_handler();
+        }
+
+        self::assertInstanceOf(PlainTemplate::class, $template);
+        self::assertSame([], $errors);
+        self::assertSame([], array_intersect_key(get_object_vars($template), ['appName' => true, 'settings' => true]));
     }
 
     private function factory(): AutoVariableTemplateFactory

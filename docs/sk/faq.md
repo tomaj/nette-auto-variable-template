@@ -39,7 +39,7 @@ Zaregistrované hodnoty sú pevné: literál, parameter aj výsledok `@service::
 
 ## Funguje to s typovanými triedami šablón a `{templateType}`? {#does-it-work-with-typed-template-classes-and-templatetype}
 
-Áno, ak trieda deklaruje zaregistrované premenné ako vlastnosti. Inak PHP pri každej z nich hlási "Creation of dynamic property ... is deprecated". Pozrite [Vlastné triedy šablón](/sk/guide/template-classes).
+Áno. Trieda dostane zaregistrované premenné, ktoré deklaruje ako vlastnosti; tie, ktoré nedeklaruje, sa pre ňu preskočia, bez deprecation (ak nemá `#[\AllowDynamicProperties]`, vtedy dostane všetky). Pozrite [Vlastné triedy šablón](/sk/guide/template-classes).
 
 ## Funguje to bez Nette DI alebo mimo presenterov? {#does-it-work-without-nette-di-or-outside-presenters}
 

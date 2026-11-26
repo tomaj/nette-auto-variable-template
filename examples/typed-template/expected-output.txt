@@ -13,6 +13,6 @@
 </html>
 
 === php undeclared.php ===
-Deprecated: Creation of dynamic property PlainTemplate::$appName is deprecated
-Deprecated: Creation of dynamic property PlainTemplate::$settings is deprecated
-appName is still assigned: Acme Shop
+PlainTemplate: {"appName":false,"settings":false}
+PartialTemplate: {"appName":true,"settings":false}
+PartialTemplate appName: Acme Shop

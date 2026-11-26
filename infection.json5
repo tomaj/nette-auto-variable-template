@@ -12,7 +12,13 @@
         "json": "build/infection.json"
     },
     "mutators": {
-        "@default": true
+        "@default": true,
+        "AssignCoalesce": {
+            "ignore": [
+                // the per-class cache of acceptsAnyProperty(): computing it on every call gives the same result, only slower
+                "Tomaj\\Latte\\AutoVariableTemplateFactory::assignVariables"
+            ]
+        }
     },
     "minMsi": 95,
     "minCoveredMsi": 95,

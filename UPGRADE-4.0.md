@@ -99,3 +99,18 @@ foreach ($factory->onCreate as $handler) {
 - Reading or writing a property the class does not declare no longer throws `Nette\MemberAccessException`; PHP reports it as for any other class.
 
 `nette/utils` is no longer required directly. If your application uses `Nette\Utils` itself, require `nette/utils` in your own `composer.json` (nette/application still installs it).
+
+## Typed template classes get only the variables they declare
+
+Not a breaking change for code without deprecations, but the behaviour is visible. 3.x assigned every registered variable to every template; on a [type-safe template class](https://tomaj.github.io/nette-auto-variable-template/guide/template-classes) that does not declare a variable, PHP reported "Creation of dynamic property ... is deprecated" and the value was assigned anyway. 4.0 skips such a variable for that class, without the deprecation. Classes that declare the property, have `#[\AllowDynamicProperties]` (on the class or a parent, as Nette's `DefaultTemplate` has) or `__set()` get it as before.
+
+If a template of such a class reads a registered variable it does not declare, declare it:
+
+```php
+use Nette\Bridges\ApplicationLatte\Template;
+
+final class HomeTemplate extends Template
+{
+    public string $appName;
+}
+```

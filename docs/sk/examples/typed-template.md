@@ -1,13 +1,13 @@
 ---
 title: "Typované šablóny"
-description: "Trieda šablóny, ktorá deklaruje zaregistrované premenné, ktorú Nette nájde podľa názvu presentera a ktorá sa používa s {templateType}; a deprecation, ktorú PHP hlási, keď ich trieda nedeklaruje."
+description: "Trieda šablóny, ktorá deklaruje zaregistrované premenné, ktorú Nette nájde podľa názvu presentera a ktorá sa používa s {templateType}; a trieda, ktorá ich nedeklaruje, a preto ich nedostane."
 ---
 
 # Typované šablóny {#typed-templates}
 
 <ExampleSource name="typed-template" />
 
-`HomeTemplate` deklaruje zaregistrované premenné (cez `BaseTemplate`) aj vlastnú premennú stránky `$title`. Nette ju nájde podľa názvu presentera, vytvorí z nej šablónu a zaregistrované premenné skončia v typovaných vlastnostiach. `undeclared.php` ukazuje, čo sa stane s triedou, ktorá ich nedeklaruje. Pozrite [Vlastné triedy šablón](/sk/guide/template-classes).
+`HomeTemplate` deklaruje zaregistrované premenné (cez `BaseTemplate`) aj vlastnú premennú stránky `$title`. Nette ju nájde podľa názvu presentera, vytvorí z nej šablónu a zaregistrované premenné skončia v typovaných vlastnostiach. `undeclared.php` ukazuje, že trieda dostane len tie zaregistrované premenné, ktoré deklaruje. Pozrite [Vlastné triedy šablón](/sk/guide/template-classes).
 
 ## Konfigurácia {#configuration}
 
@@ -37,4 +37,4 @@ description: "Trieda šablóny, ktorá deklaruje zaregistrované premenné, ktor
 
 <<< @/../examples/typed-template/expected-output.txt{html}
 
-Stránka sa vykreslí s `App\Presenters\HomeTemplate`. `PlainTemplate` hodnoty stále dostane, ale PHP hlási jednu deprecation za každú nedeklarovanú vlastnosť.
+Stránka sa vykreslí s `App\Presenters\HomeTemplate`. `PlainTemplate` nedostane žiadnu zaregistrovanú premennú a `PartialTemplate` len `$appName`; PHP nehlási žiadnu deprecation.

@@ -1,13 +1,13 @@
 ---
 title: "Typed templates"
-description: "A template class that declares the registered variables, found by Nette from the presenter name and used with {templateType}; and the deprecation PHP reports when a class does not declare them."
+description: "A template class that declares the registered variables, found by Nette from the presenter name and used with {templateType}; and a class that does not declare them, which does not get them."
 ---
 
 # Typed templates
 
 <ExampleSource name="typed-template" />
 
-`HomeTemplate` declares the registered variables (through `BaseTemplate`) and the page's own `$title`. Nette finds it by the presenter's name, creates the template from it, and the registered variables land in typed properties. `undeclared.php` shows what happens with a class that does not declare them. See [Custom template classes](/guide/template-classes).
+`HomeTemplate` declares the registered variables (through `BaseTemplate`) and the page's own `$title`. Nette finds it by the presenter's name, creates the template from it, and the registered variables land in typed properties. `undeclared.php` shows that a class gets only the registered variables it declares. See [Custom template classes](/guide/template-classes).
 
 ## Configuration
 
@@ -37,4 +37,4 @@ description: "A template class that declares the registered variables, found by 
 
 <<< @/../examples/typed-template/expected-output.txt{html}
 
-The page renders with `App\Presenters\HomeTemplate`. `PlainTemplate` still gets the values, but PHP reports one deprecation per undeclared property.
+The page renders with `App\Presenters\HomeTemplate`. `PlainTemplate` gets no registered variable and `PartialTemplate` only `$appName`; PHP reports no deprecation.
